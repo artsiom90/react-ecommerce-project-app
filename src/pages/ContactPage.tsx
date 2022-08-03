@@ -1,5 +1,9 @@
+import { HeroComponent } from "../components/HeroComponent"
+
 export const ContactPage = () => {
     return (
-        <div>Contact</div>
+        <div>
+            <HeroComponent />
+        </div>
     )
 }
