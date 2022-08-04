@@ -3,7 +3,7 @@
         {
             "id": 0,
             "title": "Fusce dictum finibus",
-            "imgUrl": "../assets/img/gallery/01.jpg",
+            "img": "/gallery/01.jpg",
             "price": 45,
             "description": "Nam in suscipit nisi, sit amet consectetur metus. Ut sit amet tellus accumsan",
             "category": 0,
@@ -12,7 +12,7 @@
         {
             "id": 1,
             "title": "Aliquam sagittis",
-            "imgUrl": "../assets/img/gallery/02.jpg",
+            "img": "/gallery/02.jpg",
             "price": 65,
             "description": "Nam in suscipit nisi, sit amet consectetur metus. Ut sit amet tellus accumsan",
             "category": 0,
@@ -21,7 +21,7 @@
         {
             "id": 2,
             "title": "Sed varius turpis",
-            "imgUrl": "../assets/img/gallery/03.jpg",
+            "img": "/gallery/03.jpg",
             "price": 30.50,
             "description": "Nam in suscipit nisi, sit amet consectetur metus. Ut sit amet tellus accumsan",
             "category": 0,
@@ -30,7 +30,7 @@
         {
             "id": 3,
             "title": "Aliquam sagittis",
-            "imgUrl": "../assets/img/gallery/04.jpg",
+            "img": "/gallery/04.jpg",
             "price": 25.50,
             "description": "Nam in suscipit nisi, sit amet consectetur metus. Ut sit amet tellus accumsan",
             "category": 0,
@@ -39,7 +39,7 @@
         {
             "id": 4,
             "title": "Maecenas eget justo",
-            "imgUrl": "../assets/img/gallery/05.jpg",
+            "img": "/gallery/05.jpg",
             "price": 80.25,
             "description": "Nam in suscipit nisi, sit amet consectetur metus. Ut sit amet tellus accumsan",
             "category": 0,
@@ -48,7 +48,7 @@
         {
             "id": 5,
             "title": "Quisque",
-            "imgUrl": "../assets/img/gallery/06.jpg",
+            "img": "/gallery/06.jpg",
             "price": 20,
             "description": "Nam in suscipit nisi, sit amet consectetur metus. Ut sit amet tellus accumsan",
             "category": 0,
@@ -57,7 +57,7 @@
         {
             "id": 6,
             "title": "Sed ultricies dui",
-            "imgUrl": "../assets/img/gallery/07.jpg",
+            "img": "/gallery/07.jpg",
             "price": 94,
             "description": "Nam in suscipit nisi, sit amet consectetur metus. Ut sit amet tellus accumsan",
             "category": 0,
@@ -66,7 +66,7 @@
         {
             "id": 7,
             "title": "Donec porta consequat",
-            "imgUrl": "../assets/img/gallery/08.jpg",
+            "img": "/gallery/08.jpg",
             "price": 15,
             "description": "Nam in suscipit nisi, sit amet consectetur metus. Ut sit amet tellus accumsan",
             "category": 0,
@@ -75,7 +75,7 @@
         {
             "id": 8,
             "title": "Salad Menu One",
-            "imgUrl": "../assets/img/gallery/04.jpg",
+            "img": "/gallery/04.jpg",
             "price": 25,
             "description": "Proin eu velit egestas, viverra sapien eget, consequat nunc. Vestibulum tristique",
             "category": 1,
@@ -84,7 +84,7 @@
         {
             "id": 9,
             "title": "Second Title Salad",
-            "imgUrl": "../assets/img/gallery/03.jpg",
+            "img": "/gallery/03.jpg",
             "price": 30,
             "description": "Proin eu velit egestas, viverra sapien eget, consequat nunc. Vestibulum tristique",
             "category": 1,
@@ -93,7 +93,7 @@
         {
             "id": 10,
             "title": "Third Salad Item",
-            "imgUrl": "../assets/img/gallery/05.jpg",
+            "img": "/gallery/05.jpg",
             "price": 45,
             "description": "Proin eu velit egestas, viverra sapien eget, consequat nunc. Vestibulum tristique",
             "category": 1,
@@ -102,7 +102,7 @@
         {
             "id": 11,
             "title": "Superior Salad",
-            "imgUrl": "../assets/img/gallery/01.jpg",
+            "img": "/gallery/01.jpg",
             "price": 50,
             "description": "Proin eu velit egestas, viverra sapien eget, consequat nunc. Vestibulum tristique",
             "category": 1,
@@ -111,7 +111,7 @@
         {
             "id": 12,
             "title": "Sed ultricies dui",
-            "imgUrl": "../assets/img/gallery/08.jpg",
+            "img": "/gallery/08.jpg",
             "price": 55,
             "description": "Proin eu velit egestas, viverra sapien eget, consequat nunc. Vestibulum tristique",
             "category": 1,
@@ -120,7 +120,7 @@
         {
             "id": 13,
             "title": "Maecenas eget justo",
-            "imgUrl": "../assets/img/gallery/07.jpg",
+            "img": "/gallery/07.jpg",
             "price": 75,
             "description": "Proin eu velit egestas, viverra sapien eget, consequat nunc. Vestibulum tristique",
             "category": 1,
@@ -129,7 +129,7 @@
         {
             "id": 14,
             "title": "Noodle One",
-            "imgUrl": "../assets/img/gallery/08.jpg",
+            "img": "/gallery/08.jpg",
             "price": 12.50,
             "description": "Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus",
             "category": 2,
@@ -138,7 +138,7 @@
         {
             "id": 15,
             "title": "Noodle Second",
-            "imgUrl": "../assets/img/gallery/07.jpg",
+            "img": "/gallery/07.jpg",
             "price": 15.50,
             "description": "Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus",
             "category": 2,
@@ -147,7 +147,7 @@
         {
             "id": 16,
             "title": "Third Soft Noodle",
-            "imgUrl": "../assets/img/gallery/06.jpg",
+            "img": "/gallery/06.jpg",
             "price": 20.50,
             "description": "Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus",
             "category": 2,
@@ -156,7 +156,7 @@
         {
             "id": 17,
             "title": "Aliquam sagittis",
-            "imgUrl": "../assets/img/gallery/05.jpg",
+            "img": "/gallery/05.jpg",
             "price": 30.25,
             "description": "Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus",
             "category": 2,
@@ -165,7 +165,7 @@
         {
             "id": 18,
             "title": "Maecenas eget justo",
-            "imgUrl": "../assets/img/gallery/04.jpg",
+            "img": "/gallery/04.jpg",
             "price": 35.50,
             "description": "Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus",
             "category": 2,
@@ -174,7 +174,7 @@
         {
             "id": 19,
             "title": "Quisque",
-            "imgUrl": "../assets/img/gallery/03.jpg",
+            "img": "/gallery/03.jpg",
             "price": 40.50,
             "description": "Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus",
             "category": 2,

@@ -18,11 +18,16 @@ body {
 }
 
 .btn-menu {
-  min-width: 180px;
+  width: 180px;
   padding: 10px 20px;
   font-size: 20px;
   border: 1px solid #319966;
   color: #319966;
+}
+
+.btn-menu-active {
+  background-color: #319966;
+  color: white;
 }
 
 .btn-menu:active,
