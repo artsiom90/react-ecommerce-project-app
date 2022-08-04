@@ -7,8 +7,7 @@ export const NavbarComponent = () => {
         <Navbar
             bg='transparent'
             variant='dark'
-            className='position-fixed px-3 d-flex justify-content-between text-light'
-            style={{ zIndex: 1, width: '100%' }}
+            className='position-fixed px-3 d-flex justify-content-between text-light navbar'
         >
             <Navbar.Brand>
                 <Nav.Link to='/' as={NavLink}>
@@ -18,10 +17,7 @@ export const NavbarComponent = () => {
                         src={logo}
                         alt='logo'
                     />
-                    <Navbar.Text
-                        className='ms-2 d-inline-flex flex-column lh-1'
-                        style={{ height: '60px' }}
-                    >
+                    <Navbar.Text className='ms-2 d-inline-flex flex-column lh-1 navbar-logo'>
                         <span className='text-light fs-2'>Simple House</span>
                         <span>new online restaurant</span>
                     </Navbar.Text>
