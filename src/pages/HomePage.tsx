@@ -16,9 +16,10 @@ export const HomePage = () => {
                     description={'Enjoy Your Meal'}
                 />
                 <div className='d-flex justify-content-center pt-3 gap-4 pb-5'>
-                    {btnMenuList.map(item => {
+                    {btnMenuList.map((item, index) => {
                         return (
                             <ButtonComponent
+                                key={index}
                                 title={item}
                                 classes={btnMenuClasses}
                             />
