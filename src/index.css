@@ -36,3 +36,36 @@ body {
   color: white;
   transition: .3s;
 }
+
+.card {
+  overflow: hidden
+}
+
+.card-img {
+  cursor: pointer;
+}
+
+.card-img:hover {
+  transform: scale(1.1);
+  transition: .1s;
+}
+
+.modal-img {
+  width: 25vw;
+  height: 25vw;
+}
+
+.modal-btn {
+  width: 140px;
+  padding: 10px 20px;
+  font-size: 20px;
+  background-color: #319966;
+  border: 1px solid #319966;
+  color: white;
+}
+
+.modal-btn:active {
+  background-color: white;
+  color: #319966;
+  transition: .3s;
+}

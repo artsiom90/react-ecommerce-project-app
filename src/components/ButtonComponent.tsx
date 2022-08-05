@@ -1,6 +1,6 @@
 interface ButtonComponentProps {
     title: string
-    isChecked: boolean,
+    isChecked?: boolean,
     classes?: string[]
     btnClick: () => void
 }
