@@ -3,6 +3,7 @@ import { Container, Row } from "react-bootstrap"
 import { ButtonComponent } from "../components/ButtonComponent"
 import { CardComponent } from "../components/CardComponent"
 import { HeroComponent } from "../components/HeroComponent"
+import { SpinnerComponent } from "../components/SpinnerComponent"
 import { TitleComponent } from "../components/TitleComponent"
 
 interface Data {
@@ -59,16 +60,21 @@ export const HomePage = () => {
                         )
                     })}
                 </div>
-                <Row className="d-flex justify-content-center gap-5 pb-5">
-                    {filteredData.map(item => {
-                        return (
-                            <CardComponent
-                                key={item.id}
-                                {...item}
-                            />
-                        )
-                    })}
-                </Row>
+                {filteredData.length === 0
+                    ? <SpinnerComponent
+                        spinnerAnimation={'grow'}
+                        spinnerVariant={'success'}
+                    />
+                    : <Row className="d-flex justify-content-center gap-5 pb-5">
+                        {filteredData.map(item => {
+                            return (
+                                <CardComponent
+                                    key={item.id}
+                                    {...item}
+                                />
+                            )
+                        })}
+                    </Row>}
             </Container>
         </>
     )
