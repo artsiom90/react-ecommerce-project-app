@@ -10,9 +10,9 @@ export const App = () => {
   return (
     <MainContextProvider>
       <BrowserRouter>
-      <HeroComponent>
-      <NavbarComponent />
-      </HeroComponent>
+        <HeroComponent>
+          <NavbarComponent />
+        </HeroComponent>
         <Routes>
           <Route path='/' element={<HomePage />} />
           <Route path='about' element={<AboutPage />} />

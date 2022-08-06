@@ -22,7 +22,6 @@ export const HomePage = () => {
 
     return (
         <>
-
             <Container fluid>
                 <TitleComponent
                     title={'Welcome To Simple House'}
