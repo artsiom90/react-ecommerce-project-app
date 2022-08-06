@@ -1,4 +1,4 @@
-import { Button, Image, Modal } from "react-bootstrap"
+import { Image, Modal } from "react-bootstrap"
 import { ButtonComponent } from "./ButtonComponent"
 
 interface ModalComponentProps {

@@ -1,43 +1,25 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect } from "react"
 import { Container, Row } from "react-bootstrap"
 import { ButtonComponent } from "../components/ButtonComponent"
 import { CardComponent } from "../components/CardComponent"
 import { HeroComponent } from "../components/HeroComponent"
 import { SpinnerComponent } from "../components/SpinnerComponent"
 import { TitleComponent } from "../components/TitleComponent"
-
-interface Data {
-    id: number
-    title: string
-    img: string
-    price: number
-    description: string
-    category: number
-    rating: number
-}
+import { MainContext } from "../context/MainContextProvider"
 
 export const HomePage = () => {
-    const [data, setData] = useState<Data[]>([])
-    const [filteredData, setFiltedData] = useState<Data[]>([])
-    const [category, setCategory] = useState<number>(0)
+    const { category, filteredMenuData, fetchMenuData, filterMenuData, setCategory } = useContext(MainContext)
 
     const btnMenuList = ['First menu', 'Second menu', 'Third menu']
     const btnMenuClasses = ['btn-menu']
 
     useEffect(() => {
-        try {
-            fetch('http://localhost:3001/meals')
-                .then(response => response.json()
-                    .then(data => setData(data)))
-        } catch (error) {
-            console.error(error)
-        }
-    }, [])
+        fetchMenuData()
+    }, [fetchMenuData])
 
     useEffect(() => {
-        const newData = data.filter(item => category === item.category)
-        setFiltedData(newData)
-    }, [category, data])
+        filterMenuData()
+    }, [category, filterMenuData, filteredMenuData])
 
     return (
         <>
@@ -60,13 +42,13 @@ export const HomePage = () => {
                         )
                     })}
                 </div>
-                {filteredData.length === 0
+                {filteredMenuData.length === 0
                     ? <SpinnerComponent
                         spinnerAnimation={'grow'}
                         spinnerVariant={'success'}
                     />
                     : <Row className="d-flex justify-content-center gap-5 pb-5">
-                        {filteredData.map(item => {
+                        {filteredMenuData.map(item => {
                             return (
                                 <CardComponent
                                     key={item.id}
