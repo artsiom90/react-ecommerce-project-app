@@ -2,7 +2,6 @@ import { useContext, useEffect } from "react"
 import { Container, Row } from "react-bootstrap"
 import { ButtonComponent } from "../components/ButtonComponent"
 import { CardComponent } from "../components/CardComponent"
-import { HeroComponent } from "../components/HeroComponent"
 import { SpinnerComponent } from "../components/SpinnerComponent"
 import { TitleComponent } from "../components/TitleComponent"
 import { MainContext } from "../context/MainContextProvider"
@@ -23,7 +22,7 @@ export const HomePage = () => {
 
     return (
         <>
-            <HeroComponent />
+
             <Container fluid>
                 <TitleComponent
                     title={'Welcome To Simple House'}

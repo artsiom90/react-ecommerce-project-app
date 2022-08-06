@@ -50,6 +50,25 @@ body {
   transition: .1s;
 }
 
+.card-badge {
+  z-index: 2;
+}
+
+.card-add-btn {
+  padding: 5px 10px;
+  background-color: #319966;
+  color: white;
+  border: 1px solid #319966;
+  border-radius: 3px;
+  transition: .3s;
+}
+
+.card-add-btn:active {
+  background-color: white;
+  color: #319966;
+  border: 1px solid #319966;
+}
+
 .modal-img {
   width: 25vw;
   height: 25vw;
@@ -68,4 +87,8 @@ body {
   background-color: white;
   color: #319966;
   transition: .3s;
+}
+
+.basket-icon {
+  cursor: pointer;
 }
