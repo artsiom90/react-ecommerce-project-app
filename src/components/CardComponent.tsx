@@ -12,9 +12,10 @@ interface CardComponentProps {
     rating: number
     quantity: any
     addCartItem: () => void
+    removeCartItem: () => void
 }
 
-export const CardComponent = ({ img, title, description, quantity, addCartItem }: CardComponentProps) => {
+export const CardComponent = ({ img, title, description, quantity, addCartItem, removeCartItem }: CardComponentProps) => {
     const [openModal, setOpenModal] = useState<boolean>(false)
 
     const toogleModal = () => {
@@ -49,6 +50,11 @@ export const CardComponent = ({ img, title, description, quantity, addCartItem }
                             classes={['card-add-btn']}
                             btnClick={addCartItem}
                         />
+                        {quantity > 0 && <ButtonComponent
+                            title={'Remove'}
+                            classes={['card-remove-btn']}
+                            btnClick={removeCartItem}
+                        />}
                     </Card.Text>
                 </Card.Body>
             </Card>

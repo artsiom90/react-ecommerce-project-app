@@ -13,7 +13,8 @@ export const HomePage = () => {
         fetchMenuData,
         filterMenuData,
         setMenuCategory,
-        setCartQuantity,
+        addCartItem,
+        removeCartItem,
     } = useContext(MainContext)
 
     const btnMenuList = ['First menu', 'Second menu', 'Third menu']
@@ -56,7 +57,8 @@ export const HomePage = () => {
                         return (
                             <CardComponent
                                 key={item.id}
-                                addCartItem={() => setCartQuantity(item.id)}
+                                addCartItem={() => addCartItem(item.id)}
+                                removeCartItem={() => removeCartItem(item.id)}
                                 {...item}
                             />
                         )

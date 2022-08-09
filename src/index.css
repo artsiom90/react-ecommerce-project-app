@@ -75,6 +75,21 @@ body {
   border: 1px solid #319966;
 }
 
+.card-remove-btn {
+  padding: 5px 10px;
+  background-color: #993332;
+  color: white;
+  border: 1px solid #993332;
+  border-radius: 3px;
+  transition: .3s;
+}
+
+.card-remove-btn:active {
+  background-color: white;
+  color: #993332;
+  border: 1px solid #993332;
+}
+
 .modal-img {
   width: 25vw;
   height: 25vw;

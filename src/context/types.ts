@@ -20,7 +20,8 @@ export enum MainActionEnum {
     SET_MENU_DATA = 'SET_MENU_DATA',
     SET_FILTERED_MENU_DATA = 'SET_FILTERED_MENU_DATA',
     SET_CATEGORY = 'SET_CATEGORY',
-    SET_CART_ITEMS_QUANTITY = 'SET_CART_ITEMS_QUANTITY',
+    ADD_CART_ITEMS = 'ADD_CART_ITEMS',
+    REMOVE_CART_ITEMS = 'REMOVE_CART_ITEMS',
     SET_BASKET_ITEMS_QUANTITY = 'SET_BASKET_ITEMS_QUANTITY',
 }
 
@@ -39,8 +40,13 @@ export interface SetCategoryActionType {
     payload: number
 }
 
-export interface SetCartItemsQuantityActionType {
-    type: MainActionEnum.SET_CART_ITEMS_QUANTITY
+export interface AddCartItemsActionType {
+    type: MainActionEnum.ADD_CART_ITEMS
+    payload: number
+}
+
+export interface RemoveCartItemsActionType {
+    type: MainActionEnum.REMOVE_CART_ITEMS
     payload: number
 }
 
@@ -52,5 +58,6 @@ export type MainActionType =
     SetMenuDataActionType
     | SetFilteredMenuDataActionType
     | SetCategoryActionType
-    | SetCartItemsQuantityActionType
+    | AddCartItemsActionType
+    | RemoveCartItemsActionType
     | SetBasketItemsQuantityActionType

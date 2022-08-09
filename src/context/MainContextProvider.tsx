@@ -14,7 +14,8 @@ interface MainContextProviderType {
     fetchMenuData: () => void
     filterMenuData: () => void
     setMenuCategory: (index: number) => void
-    setCartQuantity: (id: number) => void
+    addCartItem: (id: number) => void
+    removeCartItem: (id: number) => void
 }
 
 export const MainContext = createContext({} as MainContextProviderType)
@@ -43,8 +44,13 @@ export const MainContextProvider = ({ children }: MainContextProviderProps) => {
         dispatch(mainReducerActions.setCategory(payload))
     }
 
-    const setCartQuantity = (payload: number) => {
-        dispatch(mainReducerActions.setCartItemsQuantity(payload))
+    const addCartItem = (payload: number) => {
+        dispatch(mainReducerActions.addCartItems(payload))
+        dispatch(mainReducerActions.setBasketItemsQuantity())
+    }
+
+    const removeCartItem = (payload: number) => {
+        dispatch(mainReducerActions.removeCartItems(payload))
         dispatch(mainReducerActions.setBasketItemsQuantity())
     }
 
@@ -56,7 +62,8 @@ export const MainContextProvider = ({ children }: MainContextProviderProps) => {
             fetchMenuData,
             filterMenuData,
             setMenuCategory,
-            setCartQuantity,
+            addCartItem,
+            removeCartItem,
         }}>
             {children}
         </MainContext.Provider>
