@@ -10,9 +10,11 @@ interface CardComponentProps {
     description: string
     category: number
     rating: number
+    quantity: any
+    addCartItem: () => void
 }
 
-export const CardComponent = ({ img, title, description }: CardComponentProps) => {
+export const CardComponent = ({ img, title, description, quantity, addCartItem }: CardComponentProps) => {
     const [openModal, setOpenModal] = useState<boolean>(false)
 
     const toogleModal = () => {
@@ -29,7 +31,7 @@ export const CardComponent = ({ img, title, description }: CardComponentProps) =
                     bg='danger'
                     className='position-absolute end-0 mt-1 me-1 fs-6 card-badge'
                 >
-                    0
+                    {quantity > 0 && quantity}
                 </Badge>
                 <Card.Img
                     variant="top"
@@ -45,7 +47,7 @@ export const CardComponent = ({ img, title, description }: CardComponentProps) =
                         <ButtonComponent
                             title={'+ Add'}
                             classes={['card-add-btn']}
-                            btnClick={() => console.log}
+                            btnClick={addCartItem}
                         />
                     </Card.Text>
                 </Card.Body>

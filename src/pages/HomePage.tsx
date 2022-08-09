@@ -7,7 +7,14 @@ import { TitleComponent } from "../components/TitleComponent"
 import { MainContext } from "../context/MainContextProvider"
 
 export const HomePage = () => {
-    const { category, filteredMenuData, fetchMenuData, filterMenuData, setCategory } = useContext(MainContext)
+    const {
+        category,
+        filteredMenuData,
+        fetchMenuData,
+        filterMenuData,
+        setMenuCategory,
+        setCartQuantity,
+    } = useContext(MainContext)
 
     const btnMenuList = ['First menu', 'Second menu', 'Third menu']
     const btnMenuClasses = ['btn-menu']
@@ -18,7 +25,7 @@ export const HomePage = () => {
 
     useEffect(() => {
         filterMenuData()
-    }, [category, filterMenuData, filteredMenuData])
+    }, [category, filterMenuData])
 
     return (
         <Container fluid>
@@ -34,7 +41,7 @@ export const HomePage = () => {
                             title={item}
                             isChecked={category === index ? true : false}
                             classes={btnMenuClasses}
-                            btnClick={() => setCategory(index)}
+                            btnClick={() => setMenuCategory(index)}
                         />
                     )
                 })}
@@ -49,6 +56,7 @@ export const HomePage = () => {
                         return (
                             <CardComponent
                                 key={item.id}
+                                addCartItem={() => setCartQuantity(item.id)}
                                 {...item}
                             />
                         )

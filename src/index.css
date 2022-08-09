@@ -98,6 +98,11 @@ body {
 .basket-icon {
   cursor: pointer;
   margin-top: 22px;
+  z-index: 3;
+}
+
+.basket-badge {
+  z-index: 3;
 }
 
 .footer-social-icon {

@@ -1,6 +1,10 @@
+import { useContext } from 'react'
 import { Badge } from 'react-bootstrap'
+import { MainContext } from '../context/MainContextProvider'
 
 export const BasketComponent = () => {
+    const { quantity } = useContext(MainContext)
+
     return (
         <>
             <div className='position-fixed end-0 me-3 basket-icon'>
@@ -16,9 +20,9 @@ export const BasketComponent = () => {
             </div>
             <Badge
                 bg='danger'
-                className='position-fixed end-0 mt-4 me-2 card-badge'
+                className='position-fixed end-0 mt-4 me-2 basket-badge'
             >
-                0
+                {quantity > 0 && quantity}
             </Badge>
         </>
     )
