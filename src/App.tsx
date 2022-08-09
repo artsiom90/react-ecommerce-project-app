@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
+import { FooterComponent } from "./components/FooterComponent"
 import { HeroComponent } from "./components/HeroComponent"
 import { NavbarComponent } from "./components/NavbarComponent"
 import { MainContextProvider } from "./context/MainContextProvider"
@@ -18,6 +19,7 @@ export const App = () => {
           <Route path='about' element={<AboutPage />} />
           <Route path='contact' element={<ContactPage />} />
         </Routes>
+        <FooterComponent />
       </BrowserRouter>
     </MainContextProvider>
   )

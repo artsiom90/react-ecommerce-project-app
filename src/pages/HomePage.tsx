@@ -21,41 +21,39 @@ export const HomePage = () => {
     }, [category, filterMenuData, filteredMenuData])
 
     return (
-        <>
-            <Container fluid>
-                <TitleComponent
-                    title={'Welcome To Simple House'}
-                    description={'Enjoy Your Meal'}
+        <Container fluid>
+            <TitleComponent
+                title={'Welcome To Simple House'}
+                description={'Enjoy Your Meal'}
+            />
+            <div className='d-flex justify-content-center flex-wrap pt-3 gap-4 pb-5'>
+                {btnMenuList.map((item, index) => {
+                    return (
+                        <ButtonComponent
+                            key={index}
+                            title={item}
+                            isChecked={category === index ? true : false}
+                            classes={btnMenuClasses}
+                            btnClick={() => setCategory(index)}
+                        />
+                    )
+                })}
+            </div>
+            {filteredMenuData.length === 0
+                ? <SpinnerComponent
+                    spinnerAnimation={'grow'}
+                    spinnerVariant={'success'}
                 />
-                <div className='d-flex justify-content-center flex-wrap pt-3 gap-4 pb-5'>
-                    {btnMenuList.map((item, index) => {
+                : <Row className="d-flex justify-content-center gap-5 pb-5">
+                    {filteredMenuData.map(item => {
                         return (
-                            <ButtonComponent
-                                key={index}
-                                title={item}
-                                isChecked={category === index ? true : false}
-                                classes={btnMenuClasses}
-                                btnClick={() => setCategory(index)}
+                            <CardComponent
+                                key={item.id}
+                                {...item}
                             />
                         )
                     })}
-                </div>
-                {filteredMenuData.length === 0
-                    ? <SpinnerComponent
-                        spinnerAnimation={'grow'}
-                        spinnerVariant={'success'}
-                    />
-                    : <Row className="d-flex justify-content-center gap-5 pb-5">
-                        {filteredMenuData.map(item => {
-                            return (
-                                <CardComponent
-                                    key={item.id}
-                                    {...item}
-                                />
-                            )
-                        })}
-                    </Row>}
-            </Container>
-        </>
+                </Row>}
+        </Container>
     )
 }

@@ -2,6 +2,12 @@ body {
   margin: 0;
 }
 
+#root {
+  display: flex;
+  flex-direction: column;
+  min-width: 100vh;
+}
+
 .navbar {
   z-index: 1;
   width: 100%;
@@ -92,4 +98,8 @@ body {
 .basket-icon {
   cursor: pointer;
   margin-top: 22px;
+}
+
+.footer-social-icon {
+  cursor: pointer;
 }

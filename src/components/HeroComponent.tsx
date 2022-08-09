@@ -1,4 +1,5 @@
 import { ReactNode } from "react"
+import { Container } from "react-bootstrap"
 import { BasketComponent } from "./BasketComponent"
 
 interface HeroComponentProps {
@@ -7,9 +8,12 @@ interface HeroComponentProps {
 
 export const HeroComponent = ({ children }: HeroComponentProps) => {
     return (
-        <div className="text-center hero">
+        <Container
+            fluid
+            className="text-center hero"
+        >
             <BasketComponent />
             {children}
-        </div>
+        </Container>
     )
 }
