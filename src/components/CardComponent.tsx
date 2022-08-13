@@ -15,7 +15,7 @@ interface CardComponentProps {
     removeCartItem: () => void
 }
 
-export const CardComponent = ({ img, title, description, quantity, addCartItem, removeCartItem }: CardComponentProps) => {
+export const CardComponent = ({ img, title, price, description, rating, quantity, addCartItem, removeCartItem }: CardComponentProps) => {
     const [openModal, setOpenModal] = useState<boolean>(false)
 
     const toogleModal = () => {
@@ -44,17 +44,28 @@ export const CardComponent = ({ img, title, description, quantity, addCartItem, 
                     <Card.Title>
                         {title}
                     </Card.Title>
-                    <Card.Text className='fs-6 d-flex gap-2'>
-                        <ButtonComponent
-                            title={'+ Add'}
-                            classes={['card-add-btn']}
-                            btnClick={addCartItem}
-                        />
-                        {quantity > 0 && <ButtonComponent
-                            title={'Remove'}
-                            classes={['card-remove-btn']}
-                            btnClick={removeCartItem}
-                        />}
+                    <Card.Text className='fs-6 d-flex justify-content-between'>
+                        <div className='d-flex gap-2'>
+                            <ButtonComponent
+                                title={'+ Add'}
+                                classes={['card-add-btn']}
+                                btnClick={addCartItem}
+                            />
+                            {quantity > 0 && <ButtonComponent
+                                title={'Remove'}
+                                classes={['card-remove-btn']}
+                                btnClick={removeCartItem}
+                            />}
+                        </div>
+                        <div className='d-flex flex-column-reverse align-items-end'>
+                            <div>
+                                <span className='fs-5 card-price'>{price}$</span>
+                            </div>
+                            <div>
+                                <span>Rating: </span>
+                                <span>{rating}</span>
+                            </div>
+                        </div>
                     </Card.Text>
                 </Card.Body>
             </Card>

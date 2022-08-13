@@ -15,7 +15,7 @@ export const mainReducer = (state = initialState, action: any): MainReducerState
             return { ...state, filteredMenuData: action.payload }
         case MainActionEnum.SET_CATEGORY:
             return { ...state, category: action.payload }
-        case MainActionEnum.ADD_CART_ITEMS:
+        case MainActionEnum.ADD_ITEM_TO_CART:
             const newAddedCartItems = state.filteredMenuData.map(item => {
                 if (item.id === action.payload && !item.quantity) {
                     return { ...item, quantity: 1 }
@@ -26,7 +26,7 @@ export const mainReducer = (state = initialState, action: any): MainReducerState
                 return item
             })
             return { ...state, filteredMenuData: newAddedCartItems }
-        case MainActionEnum.REMOVE_CART_ITEMS:
+        case MainActionEnum.REMOVE_ITEM_FROM_CART:
             const newRemovedCartItems = state.filteredMenuData.map(item => {
                 if (item.id === action.payload) {
                     return { ...item, quantity: item.quantity - 1 }
@@ -34,7 +34,7 @@ export const mainReducer = (state = initialState, action: any): MainReducerState
                 return item
             })
             return { ...state, filteredMenuData: newRemovedCartItems }
-        case MainActionEnum.SET_BASKET_ITEMS_QUANTITY:
+        case MainActionEnum.SET_ITEMS_QUANTITY:
             const itemsQuantity = state.filteredMenuData.reduce((acc, item) => {
                 if (item.quantity) {
                     return acc + item.quantity

@@ -90,6 +90,10 @@ body {
   border: 1px solid #993332;
 }
 
+.card-price {
+  color: #319966;
+}
+
 .modal-img {
   width: 25vw;
   height: 25vw;

@@ -1,13 +1,22 @@
-import { useContext } from 'react'
-import { Badge } from 'react-bootstrap'
+import { useContext, useState } from 'react'
+import { Badge, Offcanvas } from 'react-bootstrap'
 import { MainContext } from '../context/MainContextProvider'
 
 export const BasketComponent = () => {
+    const [showMenu, setShowMenu] = useState(false)
+
+    const toogleBasketMenu = () => {
+        setShowMenu(prev => !prev)
+    }
+
     const { quantity } = useContext(MainContext)
 
     return (
         <>
-            <div className='position-fixed end-0 me-3 basket-icon'>
+            <div
+                className='position-fixed end-0 me-3 basket-icon'
+                onClick={toogleBasketMenu}
+            >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="36"
@@ -24,6 +33,19 @@ export const BasketComponent = () => {
             >
                 {quantity > 0 && quantity}
             </Badge>
+            <Offcanvas
+                show={showMenu}
+                onHide={toogleBasketMenu}
+                placement={'end'}
+            >
+                <Offcanvas.Header closeButton>
+                    <Offcanvas.Title>Your Menu</Offcanvas.Title>
+                </Offcanvas.Header>
+                <Offcanvas.Body>
+                    Some text as placeholder. In real life you can have the elements you
+                    have chosen. Like, text, images, lists, etc.
+                </Offcanvas.Body>
+            </Offcanvas>
         </>
     )
 }

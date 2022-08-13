@@ -1,6 +1,6 @@
 import { ReactNode } from "react"
 import { Container } from "react-bootstrap"
-import { BasketComponent } from "./BasketComponent"
+import { BasketComponent } from "./CartComponent"
 
 interface HeroComponentProps {
     children: ReactNode
