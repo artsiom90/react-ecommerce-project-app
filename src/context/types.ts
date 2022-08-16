@@ -13,7 +13,7 @@ export interface MainReducerStateType {
     category: number
     quantity: number
     menuData: DataType[]
-    cartData: DataType[],
+    cartItemsId: number[],
     filteredMenuData: DataType[]
 }
 
@@ -25,6 +25,8 @@ export enum MainActionEnum {
     REMOVE_ITEM_FROM_CARD = 'REMOVE_ITEM_FROM_CARD',
     SET_ITEMS_QUANTITY = 'SET_ITEMS_QUANTITY',
     ADD_ITEM_TO_CART = 'ADD_ITEM_TO_CART',
+    REMOVE_ITEM_FROM_CART = 'REMOVE_ITEM_FROM_CART',
+    CLEAR_CARD_ITEMS = 'CLEAR_CARD_ITEMS',
 }
 
 export interface SetMenuDataActionType {
@@ -61,6 +63,16 @@ export interface AddItemToCartActionType {
     payload: number
 }
 
+export interface RemoveItemTFromCartActionType {
+    type: MainActionEnum.REMOVE_ITEM_FROM_CART
+    payload: number
+}
+
+export interface ClearCardItemsActionType {
+    type: MainActionEnum.CLEAR_CARD_ITEMS
+    payload: number
+}
+
 export type MainActionType =
     SetMenuDataActionType
     | SetFilteredMenuDataActionType
@@ -69,3 +81,5 @@ export type MainActionType =
     | RemoveCardItemsActionType
     | SetCartItemsQuantityActionType
     | AddItemToCartActionType
+    | RemoveItemTFromCartActionType
+    | ClearCardItemsActionType

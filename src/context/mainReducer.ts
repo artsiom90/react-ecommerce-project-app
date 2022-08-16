@@ -4,7 +4,7 @@ export const initialState = {
     category: 0,
     quantity: 0,
     menuData: [] as DataType[],
-    cartData: [] as DataType[],
+    cartItemsId: [] as number[],
     filteredMenuData: [] as DataType[],
 }
 
@@ -44,12 +44,21 @@ export const mainReducer = (state = initialState, action: any): MainReducerState
             }, 0)
             return { ...state, quantity: itemsQuantity }
         case MainActionEnum.ADD_ITEM_TO_CART:
-            const cartItem = state.filteredMenuData.find(item => item.id === action.payload)
-            if (!cartItem) {
-                return { ...state }
-            } else {
-                return { ...state, cartData: [...state.cartData, cartItem] }
+            if (!state.cartItemsId.includes(action.payload)) {
+                return { ...state, cartItemsId: [...state.cartItemsId, action.payload] }
             }
+            return state
+        case MainActionEnum.REMOVE_ITEM_FROM_CART:
+            const newCartItems = state.cartItemsId.filter(item => item !== action.payload)
+            return { ...state, cartItemsId: newCartItems }
+        case MainActionEnum.CLEAR_CARD_ITEMS:
+            const newCardItems = state.filteredMenuData.map(item => {
+                if (item.id === action.payload) {
+                    item.quantity = 0
+                }
+                return item
+            }, [])
+            return { ...state, filteredMenuData: newCardItems }
         default:
             return state
     }

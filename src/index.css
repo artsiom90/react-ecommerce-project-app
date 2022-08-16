@@ -114,16 +114,36 @@ body {
   transition: .3s;
 }
 
-.basket-icon {
+.cart-icon {
   cursor: pointer;
   margin-top: 22px;
   z-index: 3;
 }
 
-.basket-badge {
+.cart-badge {
   z-index: 3;
+}
+
+.cart-img {
+  width: 125px;
+  height: 75px;
+  object-fit: cover;
 }
 
 .footer-social-icon {
   cursor: pointer;
+}
+
+.cart-remove-btn {
+  cursor: pointer;
+  border: none;
+  background-color: inherit;
+}
+
+.cart-btns {
+  cursor: pointer;
+}
+
+.cart-price {
+  color: #319966;
 }

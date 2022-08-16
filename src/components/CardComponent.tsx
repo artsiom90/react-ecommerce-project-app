@@ -10,7 +10,7 @@ interface CardComponentProps {
     description: string
     category: number
     rating: number
-    quantity: any
+    quantity: number
     addCardItem: () => void
     removeCardItem: () => void
     addItemToCart: () => void

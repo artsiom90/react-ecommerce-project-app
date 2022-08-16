@@ -10,7 +10,7 @@ interface MainContextProviderProps {
 interface MainContextProviderType {
     category: number
     filteredMenuData: DataType[]
-    cartData: DataType[]
+    cartItemsId: number[]
     quantity: number
     fetchMenuData: () => void
     filterMenuData: () => void
@@ -18,6 +18,8 @@ interface MainContextProviderType {
     addCardItem: (id: number) => void
     removeCardItem: (id: number) => void
     addItemToCart: (id: number) => void
+    removeItemFromCart: (id: number) => void
+    clearCardItems: (id: number) => void
 }
 
 export const MainContext = createContext({} as MainContextProviderType)
@@ -25,7 +27,7 @@ export const MainContext = createContext({} as MainContextProviderType)
 export const MainContextProvider = ({ children }: MainContextProviderProps) => {
     const [state, dispatch] = useReducer(mainReducer, initialState)
 
-    const { category, quantity, menuData, cartData, filteredMenuData } = state
+    const { category, quantity, menuData, cartItemsId, filteredMenuData } = state
 
     const fetchMenuData = useCallback(() => {
         try {
@@ -52,7 +54,7 @@ export const MainContextProvider = ({ children }: MainContextProviderProps) => {
     }
 
     const removeCardItem = (payload: number) => {
-        dispatch(mainReducerActions.removeCartItems(payload))
+        dispatch(mainReducerActions.removeCardItems(payload))
         dispatch(mainReducerActions.setCartItemsQuantity())
     }
 
@@ -61,11 +63,21 @@ export const MainContextProvider = ({ children }: MainContextProviderProps) => {
         dispatch(mainReducerActions.setCartItemsQuantity())
     }
 
+    const removeItemFromCart = (payload: number) => {
+        dispatch(mainReducerActions.removeItemFromCart(payload))
+        dispatch(mainReducerActions.setCartItemsQuantity())
+    }
+
+    const clearCardItems = (payload: number) => {
+        dispatch(mainReducerActions.clearCardItems(payload))
+        dispatch(mainReducerActions.setCartItemsQuantity())
+    }
+
 
     return (
         <MainContext.Provider value={{
             filteredMenuData,
-            cartData,
+            cartItemsId,
             category,
             quantity,
             fetchMenuData,
@@ -74,6 +86,8 @@ export const MainContextProvider = ({ children }: MainContextProviderProps) => {
             addCardItem,
             removeCardItem,
             addItemToCart,
+            removeItemFromCart,
+            clearCardItems,
         }}>
             {children}
         </MainContext.Provider>

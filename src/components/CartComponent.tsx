@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react'
 import { Badge, Offcanvas, Stack } from 'react-bootstrap'
 import { MainContext } from '../context/MainContextProvider'
+import { CartItemComponent } from './CartItemComponent'
 
 export const CartComponent = () => {
     const [showMenu, setShowMenu] = useState(false)
@@ -9,13 +10,16 @@ export const CartComponent = () => {
         setShowMenu(prev => !prev)
     }
 
-    const { quantity, cartData } = useContext(MainContext)
-    console.log(cartData)
+    const { filteredMenuData, quantity, cartItemsId } = useContext(MainContext)
+
+    const totalPrice = filteredMenuData
+        .filter(item => cartItemsId.includes(item.id))
+        .reduce((acc, item) => acc + (item.price as number * item.quantity as number), 0)
 
     return (
         <>
             <div
-                className='position-fixed end-0 me-3 basket-icon'
+                className='position-fixed end-0 me-3 cart-icon'
                 onClick={toogleCartMenu}
             >
                 <svg
@@ -30,7 +34,7 @@ export const CartComponent = () => {
             </div>
             <Badge
                 bg='danger'
-                className='position-fixed end-0 mt-4 me-2 basket-badge'
+                className='position-fixed end-0 mt-4 me-2 cart-badge'
             >
                 {quantity > 0 && quantity}
             </Badge>
@@ -40,15 +44,25 @@ export const CartComponent = () => {
                 placement={'end'}
             >
                 <Offcanvas.Header closeButton>
-                    <Offcanvas.Title>Your Menu</Offcanvas.Title>
+                    <Offcanvas.Title className='fs-3'>Your Menu</Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
-                    <Stack gap={3}>
-                        <div className="bg-light border">First item</div>
-                        <div className="bg-light border">Second item</div>
-                        <div className="bg-light border">Third item</div>
-                    </Stack>
+                    {!cartItemsId.length
+                        ? <span className='fs-4 text-muted'>Your menu is empty</span>
+                        : <Stack gap={3}>
+                            {cartItemsId.map(item => {
+                                return <CartItemComponent
+                                    key={item}
+                                    cartItemId={item}
+                                />
+                            })}
+                        </Stack>}
                 </Offcanvas.Body>
+                {totalPrice > 0 && (
+                    < span className='cart-price fs-5 my-2 ms-auto me-3'>
+                        Total price: {totalPrice}$
+                    </span>
+                )}
             </Offcanvas>
         </>
     )
