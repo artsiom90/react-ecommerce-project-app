@@ -10,4 +10,5 @@ export const mainReducerActions = {
     addItemToCart: (payload: number) => ({ type: MainActionEnum.ADD_ITEM_TO_CART, payload }),
     removeItemFromCart: (payload: number) => ({ type: MainActionEnum.REMOVE_ITEM_FROM_CART, payload }),
     clearCardItems: (payload: number) => ({ type: MainActionEnum.CLEAR_CARD_ITEMS, payload }),
+    clearCartItems: () => ({ type: MainActionEnum.CLEAR_CART_ITEMS }),
 }

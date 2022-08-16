@@ -5,7 +5,6 @@ export const initialState = {
     quantity: 0,
     menuData: [] as DataType[],
     cartItemsId: [] as number[],
-    filteredMenuData: [] as DataType[],
 }
 
 export const mainReducer = (state = initialState, action: any): MainReducerStateType => {
@@ -13,11 +12,11 @@ export const mainReducer = (state = initialState, action: any): MainReducerState
         case MainActionEnum.SET_MENU_DATA:
             return { ...state, menuData: action.payload }
         case MainActionEnum.SET_FILTERED_MENU_DATA:
-            return { ...state, filteredMenuData: action.payload }
+            return { ...state, menuData: action.payload }
         case MainActionEnum.SET_CATEGORY:
             return { ...state, category: action.payload }
         case MainActionEnum.ADD_ITEM_TO_CARD:
-            const newAddedCartItems = state.filteredMenuData.map(item => {
+            const newAddedCartItems = state.menuData.map(item => {
                 if (item.id === action.payload && !item.quantity) {
                     return { ...item, quantity: 1 }
                 }
@@ -26,17 +25,17 @@ export const mainReducer = (state = initialState, action: any): MainReducerState
                 }
                 return item
             })
-            return { ...state, filteredMenuData: newAddedCartItems }
+            return { ...state, menuData: newAddedCartItems }
         case MainActionEnum.REMOVE_ITEM_FROM_CARD:
-            const newRemovedCartItems = state.filteredMenuData.map(item => {
+            const newRemovedCartItems = state.menuData.map(item => {
                 if (item.id === action.payload) {
                     return { ...item, quantity: item.quantity - 1 }
                 }
                 return item
             })
-            return { ...state, filteredMenuData: newRemovedCartItems }
+            return { ...state, menuData: newRemovedCartItems }
         case MainActionEnum.SET_ITEMS_QUANTITY:
-            const itemsQuantity = state.filteredMenuData.reduce((acc, item) => {
+            const itemsQuantity = state.menuData.reduce((acc, item) => {
                 if (item.quantity) {
                     return acc + item.quantity
                 }
@@ -51,14 +50,24 @@ export const mainReducer = (state = initialState, action: any): MainReducerState
         case MainActionEnum.REMOVE_ITEM_FROM_CART:
             const newCartItems = state.cartItemsId.filter(item => item !== action.payload)
             return { ...state, cartItemsId: newCartItems }
-        case MainActionEnum.CLEAR_CARD_ITEMS:
-            const newCardItems = state.filteredMenuData.map(item => {
+        case MainActionEnum.CLEAR_CARD_ITEMS: {
+            const newCardItems = state.menuData.map(item => {
                 if (item.id === action.payload) {
                     item.quantity = 0
                 }
                 return item
             }, [])
-            return { ...state, filteredMenuData: newCardItems }
+            return { ...state, menuData: newCardItems }
+        }
+        case MainActionEnum.CLEAR_CART_ITEMS: {
+            const newCardItems = state.menuData.map(item => {
+                if (item.quantity > 0) {
+                    item.quantity = 0
+                }
+                return item
+            })
+            return { ...state, menuData: newCardItems, cartItemsId: [] }
+        }
         default:
             return state
     }

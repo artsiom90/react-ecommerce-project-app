@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react"
+import { useContext } from "react"
 import { Stack } from "react-bootstrap"
 import { MainContext } from "../context/MainContextProvider"
 
@@ -8,14 +8,14 @@ interface CartItemComponentProps {
 
 export const CartItemComponent = ({ cartItemId }: CartItemComponentProps) => {
   const {
-    filteredMenuData,
+    menuData,
     addCardItem,
     removeCardItem,
     removeItemFromCart,
     clearCardItems,
   } = useContext(MainContext)
 
-  const item = filteredMenuData.find(item => item.id === cartItemId)
+  const item = menuData.find(item => item.id === cartItemId)
 
   const removeItem = () => {
     removeItemFromCart(cartItemId)

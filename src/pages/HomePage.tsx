@@ -5,13 +5,13 @@ import { CardComponent } from "../components/CardComponent"
 import { SpinnerComponent } from "../components/SpinnerComponent"
 import { TitleComponent } from "../components/TitleComponent"
 import { MainContext } from "../context/MainContextProvider"
+import { DataType } from "../context/types"
 
 export const HomePage = () => {
     const {
         category,
-        filteredMenuData,
+        menuData,
         fetchMenuData,
-        filterMenuData,
         setMenuCategory,
         addCardItem,
         removeCardItem,
@@ -24,10 +24,6 @@ export const HomePage = () => {
     useEffect(() => {
         fetchMenuData()
     }, [fetchMenuData])
-
-    useEffect(() => {
-        filterMenuData()
-    }, [category, filterMenuData])
 
     return (
         <Container fluid>
@@ -48,13 +44,13 @@ export const HomePage = () => {
                     )
                 })}
             </div>
-            {filteredMenuData.length === 0
+            {menuData.length === 0
                 ? <SpinnerComponent
                     spinnerAnimation={'grow'}
                     spinnerVariant={'success'}
                 />
                 : <Row className="d-flex justify-content-center gap-5 pb-5">
-                    {filteredMenuData.map(item => {
+                    {menuData.filter(item => item.category === category).map(item => {
                         return (
                             <CardComponent
                                 key={item.id}

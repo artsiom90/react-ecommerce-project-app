@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react'
 import { Badge, Offcanvas, Stack } from 'react-bootstrap'
 import { MainContext } from '../context/MainContextProvider'
+import { ButtonComponent } from './ButtonComponent'
 import { CartItemComponent } from './CartItemComponent'
 
 export const CartComponent = () => {
@@ -10,9 +11,9 @@ export const CartComponent = () => {
         setShowMenu(prev => !prev)
     }
 
-    const { filteredMenuData, quantity, cartItemsId } = useContext(MainContext)
+    const { menuData, quantity, cartItemsId, clearCartItems } = useContext(MainContext)
 
-    const totalPrice = filteredMenuData
+    const totalPrice = menuData
         .filter(item => cartItemsId.includes(item.id))
         .reduce((acc, item) => acc + (item.price as number * item.quantity as number), 0)
 
@@ -44,11 +45,11 @@ export const CartComponent = () => {
                 placement={'end'}
             >
                 <Offcanvas.Header closeButton>
-                    <Offcanvas.Title className='fs-3'>Your Menu</Offcanvas.Title>
+                    <Offcanvas.Title className='fs-3'>Your menu</Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
                     {!cartItemsId.length
-                        ? <span className='fs-4 text-muted'>Your menu is empty</span>
+                        ? <span className='fs-4 text-muted'>Your cart is empty</span>
                         : <Stack gap={3}>
                             {cartItemsId.map(item => {
                                 return <CartItemComponent
@@ -58,11 +59,20 @@ export const CartComponent = () => {
                             })}
                         </Stack>}
                 </Offcanvas.Body>
-                {totalPrice > 0 && (
-                    < span className='cart-price fs-5 my-2 ms-auto me-3'>
-                        Total price: {totalPrice}$
-                    </span>
-                )}
+                <div className='d-flex justify-content-between align-items-center mb-3 mx-3'>
+                    {totalPrice > 0 && (
+                        <>
+                            < span className='cart-price fs-5'>
+                                Total price: {totalPrice}$
+                            </span>
+                            <ButtonComponent
+                                title={'Clear cart'}
+                                classes={['card-remove-btn']}
+                                btnClick={clearCartItems}
+                            />
+                        </>
+                    )}
+                </div>
             </Offcanvas>
         </>
     )

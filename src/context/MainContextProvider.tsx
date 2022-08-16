@@ -9,17 +9,17 @@ interface MainContextProviderProps {
 
 interface MainContextProviderType {
     category: number
-    filteredMenuData: DataType[]
+    menuData: DataType[]
     cartItemsId: number[]
     quantity: number
     fetchMenuData: () => void
-    filterMenuData: () => void
     setMenuCategory: (index: number) => void
     addCardItem: (id: number) => void
     removeCardItem: (id: number) => void
     addItemToCart: (id: number) => void
     removeItemFromCart: (id: number) => void
     clearCardItems: (id: number) => void
+    clearCartItems: () => void
 }
 
 export const MainContext = createContext({} as MainContextProviderType)
@@ -27,7 +27,7 @@ export const MainContext = createContext({} as MainContextProviderType)
 export const MainContextProvider = ({ children }: MainContextProviderProps) => {
     const [state, dispatch] = useReducer(mainReducer, initialState)
 
-    const { category, quantity, menuData, cartItemsId, filteredMenuData } = state
+    const { category, quantity, menuData, cartItemsId } = state
 
     const fetchMenuData = useCallback(() => {
         try {
@@ -38,11 +38,6 @@ export const MainContextProvider = ({ children }: MainContextProviderProps) => {
             console.error(error)
         }
     }, [])
-
-    const filterMenuData = useCallback(() => {
-        const newData = menuData.filter(item => category === item.category)
-        dispatch(mainReducerActions.setFilteredMenuData(newData))
-    }, [category, menuData])
 
     const setMenuCategory = (payload: number) => {
         dispatch(mainReducerActions.setCategory(payload))
@@ -73,21 +68,25 @@ export const MainContextProvider = ({ children }: MainContextProviderProps) => {
         dispatch(mainReducerActions.setCartItemsQuantity())
     }
 
+    const clearCartItems = () => {
+        dispatch(mainReducerActions.clearCartItems())
+        dispatch(mainReducerActions.setCartItemsQuantity())
+    }
 
     return (
         <MainContext.Provider value={{
-            filteredMenuData,
+            menuData,
             cartItemsId,
             category,
             quantity,
             fetchMenuData,
-            filterMenuData,
             setMenuCategory,
             addCardItem,
             removeCardItem,
             addItemToCart,
             removeItemFromCart,
             clearCardItems,
+            clearCartItems,
         }}>
             {children}
         </MainContext.Provider>
