@@ -1,6 +1,6 @@
 import { ReactNode } from "react"
 import { Container } from "react-bootstrap"
-import { BasketComponent } from "./CartComponent"
+import { CartComponent } from "./CartComponent"
 
 interface HeroComponentProps {
     children: ReactNode
@@ -12,7 +12,7 @@ export const HeroComponent = ({ children }: HeroComponentProps) => {
             fluid
             className="text-center hero"
         >
-            <BasketComponent />
+            <CartComponent />
             {children}
         </Container>
     )

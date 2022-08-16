@@ -1,21 +1,22 @@
 import { useContext, useState } from 'react'
-import { Badge, Offcanvas } from 'react-bootstrap'
+import { Badge, Offcanvas, Stack } from 'react-bootstrap'
 import { MainContext } from '../context/MainContextProvider'
 
-export const BasketComponent = () => {
+export const CartComponent = () => {
     const [showMenu, setShowMenu] = useState(false)
 
-    const toogleBasketMenu = () => {
+    const toogleCartMenu = () => {
         setShowMenu(prev => !prev)
     }
 
-    const { quantity } = useContext(MainContext)
+    const { quantity, cartData } = useContext(MainContext)
+    console.log(cartData)
 
     return (
         <>
             <div
                 className='position-fixed end-0 me-3 basket-icon'
-                onClick={toogleBasketMenu}
+                onClick={toogleCartMenu}
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -35,15 +36,18 @@ export const BasketComponent = () => {
             </Badge>
             <Offcanvas
                 show={showMenu}
-                onHide={toogleBasketMenu}
+                onHide={toogleCartMenu}
                 placement={'end'}
             >
                 <Offcanvas.Header closeButton>
                     <Offcanvas.Title>Your Menu</Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
-                    Some text as placeholder. In real life you can have the elements you
-                    have chosen. Like, text, images, lists, etc.
+                    <Stack gap={3}>
+                        <div className="bg-light border">First item</div>
+                        <div className="bg-light border">Second item</div>
+                        <div className="bg-light border">Third item</div>
+                    </Stack>
                 </Offcanvas.Body>
             </Offcanvas>
         </>

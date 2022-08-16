@@ -11,15 +11,31 @@ interface CardComponentProps {
     category: number
     rating: number
     quantity: any
-    addCartItem: () => void
-    removeCartItem: () => void
+    addCardItem: () => void
+    removeCardItem: () => void
+    addItemToCart: () => void
 }
 
-export const CardComponent = ({ img, title, price, description, rating, quantity, addCartItem, removeCartItem }: CardComponentProps) => {
+export const CardComponent = ({
+    img,
+    title,
+    price,
+    description,
+    rating,
+    quantity,
+    addCardItem,
+    removeCardItem,
+    addItemToCart,
+}: CardComponentProps) => {
     const [openModal, setOpenModal] = useState<boolean>(false)
 
     const toogleModal = () => {
         setOpenModal(prev => !prev)
+    }
+
+    const addItem = () => {
+        addCardItem()
+        addItemToCart()
     }
 
     return (
@@ -44,29 +60,21 @@ export const CardComponent = ({ img, title, price, description, rating, quantity
                     <Card.Title>
                         {title}
                     </Card.Title>
-                    <Card.Text className='fs-6 d-flex justify-content-between'>
+                    <div className='fs-6 d-flex justify-content-between align-items-center'>
                         <div className='d-flex gap-2'>
                             <ButtonComponent
                                 title={'+ Add'}
                                 classes={['card-add-btn']}
-                                btnClick={addCartItem}
+                                btnClick={addItem}
                             />
                             {quantity > 0 && <ButtonComponent
                                 title={'Remove'}
                                 classes={['card-remove-btn']}
-                                btnClick={removeCartItem}
+                                btnClick={removeCardItem}
                             />}
                         </div>
-                        <div className='d-flex flex-column-reverse align-items-end'>
-                            <div>
-                                <span className='fs-5 card-price'>{price}$</span>
-                            </div>
-                            <div>
-                                <span>Rating: </span>
-                                <span>{rating}</span>
-                            </div>
-                        </div>
-                    </Card.Text>
+                        <span className='fs-5 card-price'>{price}$</span>
+                    </div>
                 </Card.Body>
             </Card>
             <ModalComponent
