@@ -20,7 +20,7 @@ export const CartComponent = () => {
     return (
         <>
             <div
-                className='position-fixed end-0 me-3 cart-icon'
+                className='position-fixed end-0 cart-icon'
                 onClick={toogleCartMenu}
             >
                 <svg

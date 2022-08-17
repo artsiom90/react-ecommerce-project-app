@@ -45,10 +45,12 @@ export const HomePage = () => {
                 })}
             </div>
             {menuData.length === 0
-                ? <SpinnerComponent
-                    spinnerAnimation={'grow'}
-                    spinnerVariant={'success'}
-                />
+                ? <div className='mb-5'>
+                    <SpinnerComponent
+                        spinnerAnimation={'grow'}
+                        spinnerVariant={'success'}
+                    />
+                </div>
                 : <Row className="d-flex justify-content-center gap-5 pb-5">
                     {menuData.filter(item => item.category === category).map(item => {
                         return (

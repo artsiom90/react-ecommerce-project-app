@@ -15,9 +15,18 @@ export const App = () => {
           <NavbarComponent />
         </HeroComponent>
         <Routes>
-          <Route path='/' element={<HomePage />} />
-          <Route path='about' element={<AboutPage />} />
-          <Route path='contact' element={<ContactPage />} />
+          <Route
+            path='/'
+            element={<HomePage />}
+          />
+          <Route
+            path='about'
+            element={<AboutPage />}
+          />
+          <Route
+            path='contact'
+            element={<ContactPage />}
+          />
         </Routes>
         <FooterComponent />
       </BrowserRouter>
