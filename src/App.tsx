@@ -11,9 +11,8 @@ export const App = () => {
   return (
     <MainContextProvider>
       <BrowserRouter>
-        <HeroComponent>
-          <NavbarComponent />
-        </HeroComponent>
+        <NavbarComponent />
+        <HeroComponent />
         <Routes>
           <Route
             path='/'

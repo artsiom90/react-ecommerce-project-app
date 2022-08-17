@@ -23,15 +23,15 @@ export const ModalComponent = ({ title, description, img, open, close }: ModalCo
                     {title}
                 </Modal.Title>
             </Modal.Header>
-            <Modal.Body className="d-flex gap-3">
+            <Modal.Body className="d-flex justify-content-between gap-3">
                 <Image
                     fluid
                     src={img}
-                    className="modal-img"
+                    className="w-50 modal-img"
                 />
                 <div className='w-50'>
-                    <h4>Ingredients</h4>
-                    <p className='fs-5'>{description}</p>
+                    <h4>Description</h4>
+                    <p className='fs-6'>{description}</p>
                 </div>
             </Modal.Body>
             <Modal.Footer>

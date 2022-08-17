@@ -1,11 +1,10 @@
-import { useContext, useEffect } from "react"
+import { ChangeEvent, useContext, useEffect } from "react"
 import { Container, Row } from "react-bootstrap"
 import { ButtonComponent } from "../components/ButtonComponent"
 import { CardComponent } from "../components/CardComponent"
 import { SpinnerComponent } from "../components/SpinnerComponent"
 import { TitleComponent } from "../components/TitleComponent"
 import { MainContext } from "../context/MainContextProvider"
-import { DataType } from "../context/types"
 
 export const HomePage = () => {
     const {
@@ -19,7 +18,6 @@ export const HomePage = () => {
     } = useContext(MainContext)
 
     const btnMenuList = ['First menu', 'Second menu', 'Third menu']
-    const btnMenuClasses = ['btn-menu']
 
     useEffect(() => {
         fetchMenuData()
@@ -31,18 +29,45 @@ export const HomePage = () => {
                 title={'Welcome To Simple House'}
                 description={'Enjoy Your Meal'}
             />
-            <div className='d-flex justify-content-center flex-wrap pt-3 gap-4 pb-5'>
-                {btnMenuList.map((item, index) => {
-                    return (
-                        <ButtonComponent
-                            key={index}
-                            title={item}
-                            isChecked={category === index ? true : false}
-                            classes={btnMenuClasses}
-                            btnClick={() => setMenuCategory(index)}
-                        />
-                    )
-                })}
+            <div className='d-flex justify-content-center flex-wrap pt-2 gap-4 pb-4'>
+                {window.innerWidth < 768 ?
+                    <div className='d-flex flex-column'>
+                        <label
+                            htmlFor='menu'
+                            className='fs-6 text-muted text-center'
+                        >
+                            Tap to choose
+                        </label>
+                        <select
+                            name='menu'
+                            id='menu'
+                            className='menu-select'
+                            onChange={(e: ChangeEvent<HTMLSelectElement>) => setMenuCategory(+e.target.value)}
+                        >
+                            {btnMenuList.map((item, index) => {
+                                return (
+                                    <option
+                                        value={index}
+                                        key={index}
+                                        className='menu-select-option'
+                                    >
+                                        {item}
+                                    </option>
+                                )
+                            })}
+                        </select>
+                    </div>
+                    : btnMenuList.map((item, index) => {
+                        return (
+                            <ButtonComponent
+                                key={index}
+                                title={item}
+                                isChecked={category === index ? true : false}
+                                classes={['btn-menu']}
+                                btnClick={() => setMenuCategory(index)}
+                            />
+                        )
+                    })}
             </div>
             {menuData.length === 0
                 ? <div className='mb-5'>

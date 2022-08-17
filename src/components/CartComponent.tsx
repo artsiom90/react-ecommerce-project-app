@@ -35,7 +35,8 @@ export const CartComponent = () => {
             </div>
             <Badge
                 bg='danger'
-                className='position-fixed end-0 mt-4 me-2 cart-badge'
+                className='position-fixed end-0 cart-badge'
+                onClick={toogleCartMenu}
             >
                 {quantity > 0 && quantity}
             </Badge>
