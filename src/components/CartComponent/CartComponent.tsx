@@ -21,7 +21,7 @@ export const CartComponent = () => {
     return (
         <>
             <div
-                className={`position-fixed end-0 ${styles.icon}`}
+                className={`position-absolute end-0 ${styles.icon}`}
                 onClick={toogleCartMenu}
             >
                 <svg
@@ -36,7 +36,7 @@ export const CartComponent = () => {
             </div>
             <Badge
                 bg='danger'
-                className={`position-fixed end-0 ${styles.badge}`}
+                className={`position-absolute end-0 ${styles.badge}`}
                 onClick={toogleCartMenu}
             >
                 {quantity > 0 && quantity}

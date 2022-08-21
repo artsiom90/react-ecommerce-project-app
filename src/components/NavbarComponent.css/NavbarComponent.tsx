@@ -1,7 +1,6 @@
 import { Container, Nav, Navbar } from 'react-bootstrap'
 import { NavLink } from 'react-router-dom'
 import logo from '../../assets/img/logo.png'
-import { CartComponent } from '../CartComponent/CartComponent'
 import styles from './Navbar.module.css'
 
 export const NavbarComponent = () => {
@@ -34,7 +33,7 @@ export const NavbarComponent = () => {
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls='responsive-navbar-nav' />
                 <Navbar.Collapse id='responsive-navbar-nav'>
-                    <Nav className={`fs-5 ms-auto d-flex ${styles.links}`}>
+                    <Nav className='fs-5 ms-auto d-flex'>
                         <Nav.Link
                             to='/'
                             as={NavLink}
@@ -55,7 +54,6 @@ export const NavbarComponent = () => {
                         </Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
-                <CartComponent />
             </Container>
         </Navbar>
     )
