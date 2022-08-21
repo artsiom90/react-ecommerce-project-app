@@ -1,0 +1,50 @@
+.card {
+    overflow: hidden
+}
+
+.img {
+    cursor: pointer;
+}
+
+.img:hover {
+    transform: scale(1.1);
+    transition: .1s;
+}
+
+.badge {
+    z-index: 2;
+}
+
+.add-btn {
+    padding: 5px 10px;
+    background-color: #319966;
+    color: white;
+    border: 1px solid #319966;
+    border-radius: 3px;
+    transition: .3s;
+}
+
+.add-btn:active {
+    background-color: white;
+    color: #319966;
+    border: 1px solid #319966;
+}
+
+.remove-btn {
+    padding: 5px 10px;
+    background-color: #993332;
+    color: white;
+    border: 1px solid #993332;
+    border-radius: 3px;
+    transition: .3s;
+}
+
+.remove-btn:active {
+    background-color: white;
+    color: #993332;
+    border: 1px solid #993332;
+}
+
+.price {
+    color: #319966;
+}

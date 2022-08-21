@@ -1,7 +1,8 @@
 import { Container, Nav, Navbar } from 'react-bootstrap'
 import { NavLink } from 'react-router-dom'
-import logo from '../assets/img/logo.png'
-import { CartComponent } from './CartComponent'
+import logo from '../../assets/img/logo.png'
+import { CartComponent } from '../CartComponent/CartComponent'
+import styles from './Navbar.module.css'
 
 export const NavbarComponent = () => {
     return (
@@ -10,7 +11,7 @@ export const NavbarComponent = () => {
             expand='lg'
             bg='dark'
             variant='dark'
-            className='d-flex justify-content-between text-center text-light navbar'
+            className={`d-flex justify-content-between text-center text-light ${styles.navbar}`}
         >
             <Container fluid>
                 <Navbar.Brand className='py-0'>
@@ -26,14 +27,14 @@ export const NavbarComponent = () => {
                             className='mt-2'
                         />
                         <Navbar.Text className='ms-2 d-inline-flex align-items-start flex-column lh-1'>
-                            <span className='text-light fs-5 navbar-brand-responsive'>Simple House</span>
-                            <span className='navbar-brand-responsive fs-5'>new online restaurant</span>
+                            <span className={`text-light fs-5 ${styles['navbar-brand']}`}>Simple House</span>
+                            <span className={`fs-5 ${styles['navbar-brand']}`}>new online restaurant</span>
                         </Navbar.Text>
                     </Nav.Link>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls='responsive-navbar-nav' />
                 <Navbar.Collapse id='responsive-navbar-nav'>
-                    <Nav className='fs-5 ms-auto d-flex navbar-links-list'>
+                    <Nav className={`fs-5 ms-auto d-flex ${styles.links}`}>
                         <Nav.Link
                             to='/'
                             as={NavLink}

@@ -1,0 +1,32 @@
+.menu-btn {
+    width: 180px;
+    padding: 10px 20px;
+    font-size: 20px;
+    border: 1px solid #319966;
+    border-radius: 3px;
+    color: #319966;
+}
+
+.menu-btn:active,
+.menu-btn:hover {
+    background-color: #319966;
+    color: white;
+    transition: .3s;
+}
+
+.select {
+    width: 140px;
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #319966;
+    color: white;
+    border: #319966;
+    outline: none;
+    text-align: center;
+    appearance: none;
+}
+
+.option {
+    background-color: white;
+    color: #319966;
+}

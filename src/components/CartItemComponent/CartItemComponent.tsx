@@ -1,6 +1,7 @@
 import { useContext } from "react"
 import { Stack } from "react-bootstrap"
-import { MainContext } from "../context/MainContextProvider"
+import { MainContext } from "../../context/MainContextProvider"
+import styles from './CartItem.module.css'
 
 interface CartItemComponentProps {
   cartItemId: number
@@ -40,7 +41,7 @@ export const CartItemComponent = ({ cartItemId }: CartItemComponentProps) => {
         <img
           src={item?.img}
           alt='img'
-          className='cart-img'
+          className={styles.img}
         />
         <div className='d-flex flex-column justify-content-between gap-1'>
           <div className='fs-5 lh-1'>{item?.title}</div>
@@ -52,7 +53,7 @@ export const CartItemComponent = ({ cartItemId }: CartItemComponentProps) => {
                 width="16"
                 height="16"
                 fill="#319966"
-                className="bi bi-plus-circle cart-btns"
+                className={`bi bi-plus-circle ${styles.btns}`}
                 viewBox="0 0 16 16">
                 <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
                 <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
@@ -66,7 +67,7 @@ export const CartItemComponent = ({ cartItemId }: CartItemComponentProps) => {
                     width="16"
                     height="16"
                     fill="#993332"
-                    className="bi bi-dash-circle cart-btns"
+                    className={`bi bi-dash-circle ${styles.btns}`}
                     viewBox="0 0 16 16">
                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
                     <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z" />
@@ -74,12 +75,12 @@ export const CartItemComponent = ({ cartItemId }: CartItemComponentProps) => {
                 </>
               ) : null}
             </div>
-            <span className='cart-price'>{countCartItemPrice(item?.price as number)}$</span>
+            <span className={styles.price}>{countCartItemPrice(item?.price as number)}$</span>
           </div>
         </div>
       </div>
       <button
-        className='cart-remove-btn'
+        className={styles['remove-btn']}
         onClick={removeItem}
       >
         <svg

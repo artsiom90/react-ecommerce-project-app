@@ -1,0 +1,5 @@
+.hero {
+    height: 60vh;
+    background: url('./assets/img/hero.jpg') 0/100% no-repeat fixed;
+    background-position: 0 70%;
+}

@@ -1,3 +1,5 @@
+import styles from './Button.module.css'
+
 interface ButtonComponentProps {
     title: string
     isChecked?: boolean,
@@ -9,7 +11,7 @@ export const ButtonComponent = ({ title, isChecked, classes, btnClick }: ButtonC
     return (
         <button
             className={isChecked
-                ? `${classes?.join(' ')} btn-menu-active`
+                ? `${styles['btn-active']} ${classes?.join(' ')}`
                 : classes?.join(' ')}
             onClick={btnClick}
         >

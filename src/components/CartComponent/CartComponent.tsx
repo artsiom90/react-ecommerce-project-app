@@ -1,8 +1,9 @@
 import { useContext, useState } from 'react'
 import { Badge, Offcanvas, Stack } from 'react-bootstrap'
-import { MainContext } from '../context/MainContextProvider'
-import { ButtonComponent } from './ButtonComponent'
-import { CartItemComponent } from './CartItemComponent'
+import { MainContext } from '../../context/MainContextProvider'
+import { ButtonComponent } from '../ButtonComponent/ButtonComponent'
+import { CartItemComponent } from '../CartItemComponent/CartItemComponent'
+import styles from './Cart.module.css'
 
 export const CartComponent = () => {
     const [showMenu, setShowMenu] = useState(false)
@@ -20,7 +21,7 @@ export const CartComponent = () => {
     return (
         <>
             <div
-                className='position-fixed end-0 cart-icon'
+                className={`position-fixed end-0 ${styles.icon}`}
                 onClick={toogleCartMenu}
             >
                 <svg
@@ -35,7 +36,7 @@ export const CartComponent = () => {
             </div>
             <Badge
                 bg='danger'
-                className='position-fixed end-0 cart-badge'
+                className={`position-fixed end-0 ${styles.badge}`}
                 onClick={toogleCartMenu}
             >
                 {quantity > 0 && quantity}
@@ -63,12 +64,12 @@ export const CartComponent = () => {
                 <div className='d-flex justify-content-between align-items-center mb-3 mx-3'>
                     {totalPrice > 0 && (
                         <>
-                            < span className='cart-price fs-5'>
+                            < span className={`fs-5 ${styles.price}`}>
                                 Total price: {totalPrice}$
                             </span>
                             <ButtonComponent
                                 title={'Clear cart'}
-                                classes={['card-remove-btn']}
+                                classes={[styles['remove-btn']]}
                                 btnClick={clearCartItems}
                             />
                         </>

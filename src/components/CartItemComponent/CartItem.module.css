@@ -1,0 +1,19 @@
+.img {
+    width: 125px;
+    height: 75px;
+    object-fit: cover;
+}
+
+.price {
+    color: #319966;
+}
+
+.remove-btn {
+    cursor: pointer;
+    border: none;
+    background-color: inherit;
+}
+
+.btns {
+    cursor: pointer;
+}

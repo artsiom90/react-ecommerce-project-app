@@ -1,10 +1,11 @@
 import { ChangeEvent, useContext, useEffect } from "react"
 import { Container, Row } from "react-bootstrap"
-import { ButtonComponent } from "../components/ButtonComponent"
-import { CardComponent } from "../components/CardComponent"
-import { SpinnerComponent } from "../components/SpinnerComponent"
-import { TitleComponent } from "../components/TitleComponent"
-import { MainContext } from "../context/MainContextProvider"
+import { ButtonComponent } from "../../components/ButtonComponent/ButtonComponent"
+import { CardComponent } from "../../components/CardComponent/CardComponent"
+import { SpinnerComponent } from "../../components/SpinnerComponent/SpinnerComponent"
+import { TitleComponent } from "../../components/TitleComponent/TitleComponent"
+import { MainContext } from "../../context/MainContextProvider"
+import styles from './HomePage.module.css'
 
 export const HomePage = () => {
     const {
@@ -41,7 +42,7 @@ export const HomePage = () => {
                         <select
                             name='menu'
                             id='menu'
-                            className='menu-select'
+                            className={styles.select}
                             onChange={(e: ChangeEvent<HTMLSelectElement>) => setMenuCategory(+e.target.value)}
                         >
                             {btnMenuList.map((item, index) => {
@@ -49,7 +50,7 @@ export const HomePage = () => {
                                     <option
                                         value={index}
                                         key={index}
-                                        className='menu-select-option'
+                                        className={styles.option}
                                     >
                                         {item}
                                     </option>
@@ -63,7 +64,7 @@ export const HomePage = () => {
                                 key={index}
                                 title={item}
                                 isChecked={category === index ? true : false}
-                                classes={['btn-menu']}
+                                classes={[styles['menu-btn']]}
                                 btnClick={() => setMenuCategory(index)}
                             />
                         )

@@ -1,0 +1,42 @@
+.icon {
+    cursor: pointer;
+    margin-right: 10px;
+    z-index: 3;
+}
+
+.badge {
+    cursor: pointer;
+    margin-right: 5px;
+    z-index: 3;
+}
+
+.price {
+    color: #319966;
+}
+
+.remove-btn {
+    padding: 5px 10px;
+    background-color: #993332;
+    color: white;
+    border: 1px solid #993332;
+    border-radius: 3px;
+    transition: .3s;
+}
+
+.remove-btn:active {
+    background-color: white;
+    color: #993332;
+    border: 1px solid #993332;
+}
+
+@media (max-width: 992px) {
+    .icon {
+        margin-top: 130px;
+        margin-right: 22px;
+    }
+
+    .badge {
+        margin-top: 130px;
+        margin-right: 15px;
+    }
+}

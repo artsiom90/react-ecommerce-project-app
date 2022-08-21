@@ -1,5 +1,6 @@
 import { Image, Modal } from "react-bootstrap"
-import { ButtonComponent } from "./ButtonComponent"
+import { ButtonComponent } from "../ButtonComponent/ButtonComponent"
+import styles from './Modal.module.css'
 
 interface ModalComponentProps {
     title: string
@@ -14,7 +15,7 @@ export const ModalComponent = ({ title, description, img, open, close }: ModalCo
         <Modal
             size="lg"
             centered
-            className='modal'
+            className={styles.modal}
             show={open}
             onHide={close}
         >
@@ -27,7 +28,7 @@ export const ModalComponent = ({ title, description, img, open, close }: ModalCo
                 <Image
                     fluid
                     src={img}
-                    className="w-50 modal-img"
+                    className={`w-50 ${styles.img}`}
                 />
                 <div className='w-50'>
                     <h4>Description</h4>
@@ -38,7 +39,7 @@ export const ModalComponent = ({ title, description, img, open, close }: ModalCo
                 <ButtonComponent
                     title={'Close'}
                     btnClick={close}
-                    classes={['modal-btn']}
+                    classes={[styles['btn']]}
                 />
             </Modal.Footer>
         </Modal>

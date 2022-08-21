@@ -1,0 +1,12 @@
+.social-icon {
+    cursor: pointer;
+}
+
+@media (max-width: 576px) {
+    .adaptive {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+    }
+}

@@ -1,18 +1,18 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import { FooterComponent } from "./components/FooterComponent"
-import { HeroComponent } from "./components/HeroComponent"
-import { NavbarComponent } from "./components/NavbarComponent"
+import { FooterComponent } from "./components/FooterComponent/FooterComponent"
+import { NavbarComponent } from "./components/NavbarComponent.css/NavbarComponent"
+// import { HeroComponent } from "./components/HeroComponent"
 import { MainContextProvider } from "./context/MainContextProvider"
 import { AboutPage } from "./pages/AboutPage"
 import { ContactPage } from "./pages/ContactPage"
-import { HomePage } from "./pages/HomePage"
+import { HomePage } from "./pages/HomePage/HomePage"
 
 export const App = () => {
   return (
     <MainContextProvider>
       <BrowserRouter>
         <NavbarComponent />
-        <HeroComponent />
+        {/* <HeroComponent /> */}
         <Routes>
           <Route
             path='/'

@@ -1,7 +1,8 @@
 import { useState } from "react"
 import { Badge, Card } from "react-bootstrap"
-import { ButtonComponent } from "./ButtonComponent"
-import { ModalComponent } from "./ModalComponent"
+import { ButtonComponent } from "../ButtonComponent/ButtonComponent"
+import { ModalComponent } from "../ModalComponent/ModalComponent"
+import styles from './Card.module.css'
 
 interface CardComponentProps {
     title: string
@@ -41,19 +42,19 @@ export const CardComponent = ({
     return (
         <>
             <Card
-                className='p-0 card position-relative'
-                style={{ width: '18rem' }}
+                className={`p-0 position-relative ${styles.card}`}
+                style={{ width: '17rem' }}
             >
                 <Badge
                     bg='danger'
-                    className='position-absolute end-0 mt-1 me-1 fs-6 card-badge'
+                    className={`position-absolute end-0 mt-1 me-1 fs-6 ${styles.badge}`}
                 >
                     {quantity > 0 && quantity}
                 </Badge>
                 <Card.Img
                     variant="top"
                     src={img}
-                    className='card-img'
+                    className={styles.img}
                     onClick={toogleModal}
                 />
                 <Card.Body className='lh-sm'>
@@ -64,16 +65,16 @@ export const CardComponent = ({
                         <div className='d-flex gap-2'>
                             <ButtonComponent
                                 title={'+ Add'}
-                                classes={['card-add-btn']}
+                                classes={[styles['add-btn']]}
                                 btnClick={addItem}
                             />
                             {quantity > 0 && <ButtonComponent
                                 title={'Remove'}
-                                classes={['card-remove-btn']}
+                                classes={[styles['remove-btn']]}
                                 btnClick={removeCardItem}
                             />}
                         </div>
-                        <span className='fs-5 card-price'>{price}$</span>
+                        <span className={`fs-5 ${styles.price}`}>{price}$</span>
                     </div>
                 </Card.Body>
             </Card>
