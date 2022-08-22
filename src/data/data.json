@@ -76,7 +76,7 @@
             "id": 8,
             "title": "Salad Menu One",
             "img": "/gallery/04.jpg",
-            "price": 25,
+            "price": 30,
             "description": "Proin eu velit egestas, viverra sapien eget, consequat nunc. Vestibulum tristique",
             "category": 1,
             "rating": 7
@@ -85,7 +85,7 @@
             "id": 9,
             "title": "Second Title Salad",
             "img": "/gallery/03.jpg",
-            "price": 30,
+            "price": 25,
             "description": "Proin eu velit egestas, viverra sapien eget, consequat nunc. Vestibulum tristique",
             "category": 1,
             "rating": 10
@@ -94,7 +94,7 @@
             "id": 10,
             "title": "Third Salad Item",
             "img": "/gallery/05.jpg",
-            "price": 45,
+            "price": 15,
             "description": "Proin eu velit egestas, viverra sapien eget, consequat nunc. Vestibulum tristique",
             "category": 1,
             "rating": 8
@@ -103,7 +103,7 @@
             "id": 11,
             "title": "Superior Salad",
             "img": "/gallery/01.jpg",
-            "price": 50,
+            "price": 55,
             "description": "Proin eu velit egestas, viverra sapien eget, consequat nunc. Vestibulum tristique",
             "category": 1,
             "rating": 4
@@ -112,7 +112,7 @@
             "id": 12,
             "title": "Sed ultricies dui",
             "img": "/gallery/08.jpg",
-            "price": 55,
+            "price": 75,
             "description": "Proin eu velit egestas, viverra sapien eget, consequat nunc. Vestibulum tristique",
             "category": 1,
             "rating": 3
@@ -121,7 +121,7 @@
             "id": 13,
             "title": "Maecenas eget justo",
             "img": "/gallery/07.jpg",
-            "price": 75,
+            "price": 50,
             "description": "Proin eu velit egestas, viverra sapien eget, consequat nunc. Vestibulum tristique",
             "category": 1,
             "rating": 9
@@ -130,7 +130,7 @@
             "id": 14,
             "title": "Noodle One",
             "img": "/gallery/08.jpg",
-            "price": 12.50,
+            "price": 15.50,
             "description": "Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus",
             "category": 2,
             "rating": 6
@@ -139,7 +139,7 @@
             "id": 15,
             "title": "Noodle Second",
             "img": "/gallery/07.jpg",
-            "price": 15.50,
+            "price": 12.50,
             "description": "Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus",
             "category": 2,
             "rating": 7
@@ -148,7 +148,7 @@
             "id": 16,
             "title": "Third Soft Noodle",
             "img": "/gallery/06.jpg",
-            "price": 20.50,
+            "price": 30.25,
             "description": "Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus",
             "category": 2,
             "rating": 9
@@ -157,7 +157,7 @@
             "id": 17,
             "title": "Aliquam sagittis",
             "img": "/gallery/05.jpg",
-            "price": 30.25,
+            "price": 35.50,
             "description": "Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus",
             "category": 2,
             "rating": 5
@@ -166,7 +166,7 @@
             "id": 18,
             "title": "Maecenas eget justo",
             "img": "/gallery/04.jpg",
-            "price": 35.50,
+            "price": 20.25,
             "description": "Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus",
             "category": 2,
             "rating": 4

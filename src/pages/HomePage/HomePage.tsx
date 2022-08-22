@@ -1,5 +1,5 @@
-import { ChangeEvent, useContext, useEffect } from "react"
-import { Col, Container, Row } from "react-bootstrap"
+import { ChangeEvent, useContext, useEffect, useState } from "react"
+import { Container } from "react-bootstrap"
 import { ButtonComponent } from "../../components/ButtonComponent/ButtonComponent"
 import { CardComponent } from "../../components/CardComponent/CardComponent"
 import { CartComponent } from "../../components/CartComponent/CartComponent"
@@ -10,11 +10,13 @@ import { useInnerWidth } from "../../hooks/useInnerWidth"
 import styles from './HomePage.module.css'
 
 export const HomePage = () => {
+    const [sortedBy, setSortedBy] = useState<string>('id')
+    const [menuCategory, setMenuCategory] = useState<number>(0)
+
     const {
-        category,
         menuData,
-        fetchMenuData,
-        setMenuCategory,
+        isLoading,
+        getMenuData,
         addCardItem,
         removeCardItem,
         addItemToCart,
@@ -23,13 +25,40 @@ export const HomePage = () => {
     const innerWidth = useInnerWidth()
 
     const btnMenuList = ['First menu', 'Second menu', 'Third menu']
+    const sortList = ['default', 'price', 'rating']
 
     useEffect(() => {
-        fetchMenuData()
-    }, [fetchMenuData])
+        getMenuData(menuCategory, sortedBy)
+    }, [menuCategory, sortedBy, getMenuData])
 
     return (
         <Container fluid>
+            <div className={`d-flex position-absolute mt-3 ${innerWidth < 768 && 'flex-column'}`}>
+                <label
+                    htmlFor='sort'
+                    className='fs-6 text-muted text-center'
+                >
+                    Sort by:
+                </label>
+                <select
+                    name='sort'
+                    id='sort'
+                    className={styles.sort}
+                    onChange={(e: ChangeEvent<HTMLSelectElement>) => setSortedBy(e.target.value)}
+                >
+                    {sortList.map((item, index) => {
+                        return (
+                            <option
+                                value={item}
+                                key={index}
+                                className={styles.option}
+                            >
+                                {item}
+                            </option>
+                        )
+                    })}
+                </select>
+            </div>
             <CartComponent />
             <TitleComponent
                 title={'Welcome To Simple House'}
@@ -68,14 +97,14 @@ export const HomePage = () => {
                             <ButtonComponent
                                 key={index}
                                 title={item}
-                                isChecked={category === index ? true : false}
+                                isChecked={menuCategory === index ? true : false}
                                 classes={[styles['menu-btn']]}
                                 btnClick={() => setMenuCategory(index)}
                             />
                         )
                     })}
             </div>
-            {menuData.length === 0
+            {isLoading
                 ? <div className='mb-5'>
                     <SpinnerComponent
                         spinnerAnimation={'grow'}
@@ -83,7 +112,7 @@ export const HomePage = () => {
                     />
                 </div>
                 : <div className={`pb-5 ${styles.grid}`}>
-                    {menuData.filter(item => item.category === category).map(item => {
+                    {menuData.filter(item => item.category === menuCategory).map(item => {
                         return (
                             <section
                                 key={item.id}

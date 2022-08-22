@@ -32,6 +32,15 @@
     color: #319966;
 }
 
+.sort {
+    font-size: 16px;
+    text-align: center;
+    background-color: transparent;
+    color: #319966;
+    border: inherit;
+    outline: none;
+}
+
 .grid {
     display: grid;
 

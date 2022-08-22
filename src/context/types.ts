@@ -13,13 +13,13 @@ export interface MainReducerStateType {
     category: number
     quantity: number
     menuData: DataType[]
-    cartItemsId: number[],
+    cartItemsId: number[]
+    isLoading: boolean
 }
 
 export enum MainActionEnum {
     SET_MENU_DATA = 'SET_MENU_DATA',
     SET_FILTERED_MENU_DATA = 'SET_FILTERED_MENU_DATA',
-    SET_CATEGORY = 'SET_CATEGORY',
     ADD_ITEM_TO_CARD = 'ADD_ITEM_TO_CARD',
     REMOVE_ITEM_FROM_CARD = 'REMOVE_ITEM_FROM_CARD',
     SET_ITEMS_QUANTITY = 'SET_ITEMS_QUANTITY',
@@ -27,6 +27,7 @@ export enum MainActionEnum {
     REMOVE_ITEM_FROM_CART = 'REMOVE_ITEM_FROM_CART',
     CLEAR_CARD_ITEMS = 'CLEAR_CARD_ITEMS',
     CLEAR_CART_ITEMS = 'CLEAR_CART_ITEMS',
+    SET_IS_LOADING = 'SET_IS_LOADING',
 }
 
 export interface SetMenuDataActionType {
@@ -37,11 +38,6 @@ export interface SetMenuDataActionType {
 export interface SetFilteredMenuDataActionType {
     type: MainActionEnum.SET_FILTERED_MENU_DATA
     payload: DataType[]
-}
-
-export interface SetCategoryActionType {
-    type: MainActionEnum.SET_CATEGORY
-    payload: number
 }
 
 export interface AddCardItemsActionType {
@@ -77,10 +73,14 @@ export interface ClearCartItemsActionType {
     type: MainActionEnum.CLEAR_CART_ITEMS
 }
 
+export interface SetIsLoadingActionType {
+    type: MainActionEnum.SET_IS_LOADING
+    payload: boolean
+}
+
 export type MainActionType =
     SetMenuDataActionType
     | SetFilteredMenuDataActionType
-    | SetCategoryActionType
     | AddCardItemsActionType
     | RemoveCardItemsActionType
     | SetCartItemsQuantityActionType
@@ -88,3 +88,4 @@ export type MainActionType =
     | RemoveItemTFromCartActionType
     | ClearCardItemsActionType
     | ClearCartItemsActionType
+    | SetIsLoadingActionType

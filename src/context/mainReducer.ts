@@ -5,6 +5,7 @@ export const initialState = {
     quantity: 0,
     menuData: [] as DataType[],
     cartItemsId: [] as number[],
+    isLoading: false,
 }
 
 export const mainReducer = (state = initialState, action: any): MainReducerStateType => {
@@ -13,8 +14,6 @@ export const mainReducer = (state = initialState, action: any): MainReducerState
             return { ...state, menuData: action.payload }
         case MainActionEnum.SET_FILTERED_MENU_DATA:
             return { ...state, menuData: action.payload }
-        case MainActionEnum.SET_CATEGORY:
-            return { ...state, category: action.payload }
         case MainActionEnum.ADD_ITEM_TO_CARD:
             const newAddedCartItems = state.menuData.map(item => {
                 if (item.id === action.payload && !item.quantity) {
@@ -67,6 +66,9 @@ export const mainReducer = (state = initialState, action: any): MainReducerState
                 return item
             })
             return { ...state, menuData: newCardItems, cartItemsId: [] }
+        }
+        case MainActionEnum.SET_IS_LOADING: {
+            return { ...state, isLoading: action.payload }
         }
         default:
             return state

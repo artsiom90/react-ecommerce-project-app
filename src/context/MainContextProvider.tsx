@@ -1,4 +1,5 @@
 import { createContext, ReactNode, useCallback, useReducer } from "react"
+import { API } from "../api/API"
 import { initialState, mainReducer } from "./mainReducer"
 import { mainReducerActions } from "./mainReducerActions"
 import { DataType } from "./types"
@@ -8,12 +9,11 @@ interface MainContextProviderProps {
 }
 
 interface MainContextProviderType {
-    category: number
     menuData: DataType[]
     cartItemsId: number[]
     quantity: number
-    fetchMenuData: () => void
-    setMenuCategory: (index: number) => void
+    isLoading: boolean
+    getMenuData: (category: number, sortedBy: string) => Promise<void>
     addCardItem: (id: number) => void
     removeCardItem: (id: number) => void
     addItemToCart: (id: number) => void
@@ -27,21 +27,19 @@ export const MainContext = createContext({} as MainContextProviderType)
 export const MainContextProvider = ({ children }: MainContextProviderProps) => {
     const [state, dispatch] = useReducer(mainReducer, initialState)
 
-    const { category, quantity, menuData, cartItemsId } = state
+    const { quantity, menuData, cartItemsId, isLoading } = state
 
-    const fetchMenuData = useCallback(() => {
+    const getMenuData = useCallback(async (category: number, sortedBy: string) => {
         try {
-            fetch('http://localhost:3001/meals')
-                .then(response => response.json()
-                    .then(menuData => dispatch(mainReducerActions.setMenuData(menuData))))
+            dispatch(mainReducerActions.setIsLoading(true))
+            const data = await API.fetchData(category, sortedBy)
+            dispatch(mainReducerActions.setMenuData(data))
         } catch (error) {
             console.error(error)
+        } finally {
+            dispatch(mainReducerActions.setIsLoading(false))
         }
     }, [])
-
-    const setMenuCategory = (payload: number) => {
-        dispatch(mainReducerActions.setCategory(payload))
-    }
 
     const addCardItem = (payload: number) => {
         dispatch(mainReducerActions.addCardItems(payload))
@@ -77,10 +75,9 @@ export const MainContextProvider = ({ children }: MainContextProviderProps) => {
         <MainContext.Provider value={{
             menuData,
             cartItemsId,
-            category,
             quantity,
-            fetchMenuData,
-            setMenuCategory,
+            isLoading,
+            getMenuData,
             addCardItem,
             removeCardItem,
             addItemToCart,
