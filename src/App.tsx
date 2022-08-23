@@ -2,9 +2,9 @@ import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { FooterComponent } from "./components/FooterComponent/FooterComponent"
 import { NavbarComponent } from "./components/NavbarComponent.css/NavbarComponent"
 // import { HeroComponent } from "./components/HeroComponent"
-import { MainContextProvider } from "./context/MainContextProvider"
-import { AboutPage } from "./pages/AboutPage"
-import { ContactPage } from "./pages/ContactPage"
+import { MainContextProvider } from "./context/AppContextProvider"
+import { AboutPage } from "./pages/AboutPage/AboutPage"
+import { ContactPage } from "./pages/ContactPage/ContactPage"
 import { HomePage } from "./pages/HomePage/HomePage"
 
 export const App = () => {

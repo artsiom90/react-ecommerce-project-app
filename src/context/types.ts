@@ -9,7 +9,7 @@ export interface DataType {
     quantity: number
 }
 
-export interface MainReducerStateType {
+export interface AppReducerStateType {
     category: number
     quantity: number
     menuData: DataType[]
@@ -17,9 +17,8 @@ export interface MainReducerStateType {
     isLoading: boolean
 }
 
-export enum MainActionEnum {
+export enum AppActionEnum {
     SET_MENU_DATA = 'SET_MENU_DATA',
-    SET_FILTERED_MENU_DATA = 'SET_FILTERED_MENU_DATA',
     ADD_ITEM_TO_CARD = 'ADD_ITEM_TO_CARD',
     REMOVE_ITEM_FROM_CARD = 'REMOVE_ITEM_FROM_CARD',
     SET_ITEMS_QUANTITY = 'SET_ITEMS_QUANTITY',
@@ -31,56 +30,50 @@ export enum MainActionEnum {
 }
 
 export interface SetMenuDataActionType {
-    type: MainActionEnum.SET_MENU_DATA
-    payload: DataType[]
-}
-
-export interface SetFilteredMenuDataActionType {
-    type: MainActionEnum.SET_FILTERED_MENU_DATA
+    type: AppActionEnum.SET_MENU_DATA
     payload: DataType[]
 }
 
 export interface AddCardItemsActionType {
-    type: MainActionEnum.ADD_ITEM_TO_CARD
+    type: AppActionEnum.ADD_ITEM_TO_CARD
     payload: number
 }
 
 export interface RemoveCardItemsActionType {
-    type: MainActionEnum.REMOVE_ITEM_FROM_CARD
+    type: AppActionEnum.REMOVE_ITEM_FROM_CARD
     payload: number
 }
 
 export interface SetCartItemsQuantityActionType {
-    type: MainActionEnum.SET_ITEMS_QUANTITY
+    type: AppActionEnum.SET_ITEMS_QUANTITY
 }
 
 export interface AddItemToCartActionType {
-    type: MainActionEnum.ADD_ITEM_TO_CART
+    type: AppActionEnum.ADD_ITEM_TO_CART
     payload: number
 }
 
 export interface RemoveItemTFromCartActionType {
-    type: MainActionEnum.REMOVE_ITEM_FROM_CART
+    type: AppActionEnum.REMOVE_ITEM_FROM_CART
     payload: number
 }
 
 export interface ClearCardItemsActionType {
-    type: MainActionEnum.CLEAR_CARD_ITEMS
+    type: AppActionEnum.CLEAR_CARD_ITEMS
     payload: number
 }
 
 export interface ClearCartItemsActionType {
-    type: MainActionEnum.CLEAR_CART_ITEMS
+    type: AppActionEnum.CLEAR_CART_ITEMS
 }
 
 export interface SetIsLoadingActionType {
-    type: MainActionEnum.SET_IS_LOADING
+    type: AppActionEnum.SET_IS_LOADING
     payload: boolean
 }
 
-export type MainActionType =
+export type AppActionType =
     SetMenuDataActionType
-    | SetFilteredMenuDataActionType
     | AddCardItemsActionType
     | RemoveCardItemsActionType
     | SetCartItemsQuantityActionType

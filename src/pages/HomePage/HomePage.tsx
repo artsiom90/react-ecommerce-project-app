@@ -5,7 +5,7 @@ import { CardComponent } from "../../components/CardComponent/CardComponent"
 import { CartComponent } from "../../components/CartComponent/CartComponent"
 import { SpinnerComponent } from "../../components/SpinnerComponent/SpinnerComponent"
 import { TitleComponent } from "../../components/TitleComponent/TitleComponent"
-import { MainContext } from "../../context/MainContextProvider"
+import { MainContext } from "../../context/AppContextProvider"
 import { useInnerWidth } from "../../hooks/useInnerWidth"
 import styles from './HomePage.module.css'
 

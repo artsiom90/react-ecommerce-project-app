@@ -1,7 +1,7 @@
 import { createContext, ReactNode, useCallback, useReducer } from "react"
 import { API } from "../api/API"
-import { initialState, mainReducer } from "./mainReducer"
-import { mainReducerActions } from "./mainReducerActions"
+import { initialState, appReducer } from "./appReducer"
+import { appReducerActions } from "./appReducerActions"
 import { DataType } from "./types"
 
 interface MainContextProviderProps {
@@ -25,50 +25,50 @@ interface MainContextProviderType {
 export const MainContext = createContext({} as MainContextProviderType)
 
 export const MainContextProvider = ({ children }: MainContextProviderProps) => {
-    const [state, dispatch] = useReducer(mainReducer, initialState)
+    const [state, dispatch] = useReducer(appReducer, initialState)
 
     const { quantity, menuData, cartItemsId, isLoading } = state
 
     const getMenuData = useCallback(async (category: number, sortedBy: string) => {
         try {
-            dispatch(mainReducerActions.setIsLoading(true))
+            dispatch(appReducerActions.setIsLoading(true))
             const data = await API.fetchData(category, sortedBy)
-            dispatch(mainReducerActions.setMenuData(data))
+            dispatch(appReducerActions.setMenuData(data))
         } catch (error) {
             console.error(error)
         } finally {
-            dispatch(mainReducerActions.setIsLoading(false))
+            dispatch(appReducerActions.setIsLoading(false))
         }
     }, [])
 
     const addCardItem = (payload: number) => {
-        dispatch(mainReducerActions.addCardItems(payload))
-        dispatch(mainReducerActions.setCartItemsQuantity())
+        dispatch(appReducerActions.addCardItems(payload))
+        dispatch(appReducerActions.setCartItemsQuantity())
     }
 
     const removeCardItem = (payload: number) => {
-        dispatch(mainReducerActions.removeCardItems(payload))
-        dispatch(mainReducerActions.setCartItemsQuantity())
+        dispatch(appReducerActions.removeCardItems(payload))
+        dispatch(appReducerActions.setCartItemsQuantity())
     }
 
     const addItemToCart = (payload: number) => {
-        dispatch(mainReducerActions.addItemToCart(payload))
-        dispatch(mainReducerActions.setCartItemsQuantity())
+        dispatch(appReducerActions.addItemToCart(payload))
+        dispatch(appReducerActions.setCartItemsQuantity())
     }
 
     const removeItemFromCart = (payload: number) => {
-        dispatch(mainReducerActions.removeItemFromCart(payload))
-        dispatch(mainReducerActions.setCartItemsQuantity())
+        dispatch(appReducerActions.removeItemFromCart(payload))
+        dispatch(appReducerActions.setCartItemsQuantity())
     }
 
     const clearCardItems = (payload: number) => {
-        dispatch(mainReducerActions.clearCardItems(payload))
-        dispatch(mainReducerActions.setCartItemsQuantity())
+        dispatch(appReducerActions.clearCardItems(payload))
+        dispatch(appReducerActions.setCartItemsQuantity())
     }
 
     const clearCartItems = () => {
-        dispatch(mainReducerActions.clearCartItems())
-        dispatch(mainReducerActions.setCartItemsQuantity())
+        dispatch(appReducerActions.clearCartItems())
+        dispatch(appReducerActions.setCartItemsQuantity())
     }
 
     return (

@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react'
 import { Badge, Offcanvas, Stack } from 'react-bootstrap'
-import { MainContext } from '../../context/MainContextProvider'
+import { MainContext } from '../../context/AppContextProvider'
 import { ButtonComponent } from '../ButtonComponent/ButtonComponent'
 import { CartItemComponent } from '../CartItemComponent/CartItemComponent'
 import styles from './Cart.module.css'

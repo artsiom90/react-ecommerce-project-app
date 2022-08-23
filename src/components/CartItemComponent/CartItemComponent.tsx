@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { Stack } from "react-bootstrap"
-import { MainContext } from "../../context/MainContextProvider"
+import { MainContext } from "../../context/AppContextProvider"
 import styles from './CartItem.module.css'
 
 interface CartItemComponentProps {
