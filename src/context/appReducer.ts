@@ -4,6 +4,7 @@ export const initialState = {
     category: 0,
     quantity: 0,
     menuData: [] as DataType[],
+    searchData: 'a',
     cartItemsId: [] as number[],
     isLoading: false,
 }
@@ -12,6 +13,8 @@ export const appReducer = (state = initialState, action: any): AppReducerStateTy
     switch (action.type) {
         case AppActionEnum.SET_MENU_DATA:
             return { ...state, menuData: action.payload }
+        case AppActionEnum.SET_SEARCH_DATA:
+            return { ...state, searchData: action.payload }
         case AppActionEnum.ADD_ITEM_TO_CARD:
             const newAddedCartItems = state.menuData.map(item => {
                 if (item.id === action.payload && !item.quantity) {

@@ -4,16 +4,18 @@ import { initialState, appReducer } from "./appReducer"
 import { appReducerActions } from "./appReducerActions"
 import { DataType } from "./types"
 
-interface MainContextProviderProps {
+interface AppContextProviderProps {
     children: ReactNode
 }
 
-interface MainContextProviderType {
+interface AppContextProviderType {
     menuData: DataType[]
+    searchData: string
     cartItemsId: number[]
     quantity: number
     isLoading: boolean
-    getMenuData: (category: number, sortedBy: string) => Promise<void>
+    getMenuData: (category: number, sortedBy: string, searchValue: string) => Promise<void>
+    setSearchData: (value: string) => void
     addCardItem: (id: number) => void
     removeCardItem: (id: number) => void
     addItemToCart: (id: number) => void
@@ -22,17 +24,17 @@ interface MainContextProviderType {
     clearCartItems: () => void
 }
 
-export const MainContext = createContext({} as MainContextProviderType)
+export const AppContext = createContext({} as AppContextProviderType)
 
-export const MainContextProvider = ({ children }: MainContextProviderProps) => {
+export const AppContextProvider = ({ children }: AppContextProviderProps) => {
     const [state, dispatch] = useReducer(appReducer, initialState)
 
-    const { quantity, menuData, cartItemsId, isLoading } = state
+    const { menuData, searchData, quantity, cartItemsId, isLoading } = state
 
-    const getMenuData = useCallback(async (category: number, sortedBy: string) => {
+    const getMenuData = useCallback(async (category: number, sortedBy: string, searchValue: string) => {
         try {
             dispatch(appReducerActions.setIsLoading(true))
-            const data = await API.fetchData(category, sortedBy)
+            const data = await API.fetchData(category, sortedBy, searchValue)
             dispatch(appReducerActions.setMenuData(data))
         } catch (error) {
             console.error(error)
@@ -40,6 +42,10 @@ export const MainContextProvider = ({ children }: MainContextProviderProps) => {
             dispatch(appReducerActions.setIsLoading(false))
         }
     }, [])
+
+    const setSearchData = (value: string) => {
+        dispatch(appReducerActions.setSearchData(value))
+    }
 
     const addCardItem = (payload: number) => {
         dispatch(appReducerActions.addCardItems(payload))
@@ -72,12 +78,14 @@ export const MainContextProvider = ({ children }: MainContextProviderProps) => {
     }
 
     return (
-        <MainContext.Provider value={{
+        <AppContext.Provider value={{
             menuData,
+            searchData,
             cartItemsId,
             quantity,
             isLoading,
             getMenuData,
+            setSearchData,
             addCardItem,
             removeCardItem,
             addItemToCart,
@@ -86,6 +94,6 @@ export const MainContextProvider = ({ children }: MainContextProviderProps) => {
             clearCartItems,
         }}>
             {children}
-        </MainContext.Provider>
+        </AppContext.Provider>
     )
 }

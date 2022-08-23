@@ -5,7 +5,7 @@ import { CardComponent } from "../../components/CardComponent/CardComponent"
 import { CartComponent } from "../../components/CartComponent/CartComponent"
 import { SpinnerComponent } from "../../components/SpinnerComponent/SpinnerComponent"
 import { TitleComponent } from "../../components/TitleComponent/TitleComponent"
-import { MainContext } from "../../context/AppContextProvider"
+import { AppContext } from "../../context/AppContextProvider"
 import { useInnerWidth } from "../../hooks/useInnerWidth"
 import styles from './HomePage.module.css'
 
@@ -15,12 +15,13 @@ export const HomePage = () => {
 
     const {
         menuData,
+        searchData,
         isLoading,
         getMenuData,
         addCardItem,
         removeCardItem,
         addItemToCart,
-    } = useContext(MainContext)
+    } = useContext(AppContext)
 
     const innerWidth = useInnerWidth()
 
@@ -28,8 +29,8 @@ export const HomePage = () => {
     const sortList = ['default', 'price', 'rating']
 
     useEffect(() => {
-        getMenuData(menuCategory, sortedBy)
-    }, [menuCategory, sortedBy, getMenuData])
+        getMenuData(menuCategory, sortedBy, searchData)
+    }, [menuCategory, searchData, sortedBy, getMenuData])
 
     return (
         <Container fluid>
@@ -111,23 +112,25 @@ export const HomePage = () => {
                         spinnerVariant={'success'}
                     />
                 </div>
-                : <div className={`pb-5 ${styles.grid}`}>
-                    {menuData.filter(item => item.category === menuCategory).map(item => {
-                        return (
-                            <section
-                                key={item.id}
-                                className='d-flex justify-content-center'
-                            >
-                                <CardComponent
-                                    addCardItem={() => addCardItem(item.id)}
-                                    removeCardItem={() => removeCardItem(item.id)}
-                                    addItemToCart={() => addItemToCart(item.id)}
-                                    {...item}
-                                />
-                            </section>
-                        )
-                    })}
-                </div>}
+                : searchData && menuData.length === 0
+                    ? <div className='text-center text-muted fs-4'>Nothing was found</div>
+                    : <div className={`pb-5 ${styles.grid}`}>
+                        {menuData.map(item => {
+                            return (
+                                <section
+                                    key={item.id}
+                                    className='d-flex justify-content-center'
+                                >
+                                    <CardComponent
+                                        addCardItem={() => addCardItem(item.id)}
+                                        removeCardItem={() => removeCardItem(item.id)}
+                                        addItemToCart={() => addItemToCart(item.id)}
+                                        {...item}
+                                    />
+                                </section>
+                            )
+                        })}
+                    </div>}
         </Container>
     )
 }

@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react'
 import { Badge, Offcanvas, Stack } from 'react-bootstrap'
-import { MainContext } from '../../context/AppContextProvider'
+import { AppContext } from '../../context/AppContextProvider'
 import { ButtonComponent } from '../ButtonComponent/ButtonComponent'
 import { CartItemComponent } from '../CartItemComponent/CartItemComponent'
 import styles from './Cart.module.css'
@@ -12,7 +12,7 @@ export const CartComponent = () => {
         setShowMenu(prev => !prev)
     }
 
-    const { menuData, quantity, cartItemsId, clearCartItems } = useContext(MainContext)
+    const { menuData, quantity, cartItemsId, clearCartItems } = useContext(AppContext)
 
     const totalPrice = menuData
         .filter(item => cartItemsId.includes(item.id))
@@ -44,7 +44,7 @@ export const CartComponent = () => {
             <Offcanvas
                 show={showMenu}
                 onHide={toogleCartMenu}
-                placement={'end'}
+                placement='end'
             >
                 <Offcanvas.Header closeButton>
                     <Offcanvas.Title className='fs-3'>Your menu</Offcanvas.Title>

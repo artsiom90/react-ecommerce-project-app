@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { Stack } from "react-bootstrap"
-import { MainContext } from "../../context/AppContextProvider"
+import { AppContext } from "../../context/AppContextProvider"
 import styles from './CartItem.module.css'
 
 interface CartItemComponentProps {
@@ -14,7 +14,7 @@ export const CartItemComponent = ({ cartItemId }: CartItemComponentProps) => {
     removeCardItem,
     removeItemFromCart,
     clearCardItems,
-  } = useContext(MainContext)
+  } = useContext(AppContext)
 
   const item = menuData.find(item => item.id === cartItemId)
 
