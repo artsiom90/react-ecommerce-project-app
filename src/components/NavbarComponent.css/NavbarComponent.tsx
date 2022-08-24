@@ -3,6 +3,7 @@ import { Container, Form, Nav, Navbar, Offcanvas } from 'react-bootstrap'
 import { NavLink, useLocation } from 'react-router-dom'
 import logo from '../../assets/img/logo.png'
 import { AppContext } from '../../context/AppContextProvider'
+import { useInnerWidth } from '../../hooks/useInnerWidth'
 import styles from './Navbar.module.css'
 
 export const NavbarComponent = () => {
@@ -12,6 +13,8 @@ export const NavbarComponent = () => {
     const { setSearchData } = useContext(AppContext)
 
     const location = useLocation()
+
+    const innerWidth = useInnerWidth()
 
     const onSubmitHandler = (e: SyntheticEvent) => {
         e.preventDefault()
@@ -41,7 +44,6 @@ export const NavbarComponent = () => {
                             height={40}
                             src={logo}
                             alt='logo'
-                            className='mt-2'
                         />
                         <Navbar.Text className='ms-2 d-inline-flex align-items-start flex-column lh-1'>
                             <span className={`text-light fs-5 ${styles['navbar-brand']}`}>Simple House</span>
@@ -49,13 +51,12 @@ export const NavbarComponent = () => {
                         </Navbar.Text>
                     </Nav.Link>
                 </Navbar.Brand>
-                <div className='d-flex align-items-center gap-3'>
+                <div className={`d-flex align-items-center gap-3 justify-content-end ${innerWidth < 576 && 'w-75'}`}>
                     {location.pathname === '/' && (
                         <Form onSubmit={onSubmitHandler}>
                             <Form.Control
                                 type='search'
                                 placeholder='Search'
-                                value={searchValue}
                                 className='bg-dark text-white'
                                 aria-label='Search'
                                 onChange={(e: ChangeEvent<HTMLInputElement>) => setSearchValue(e.target.value)}
@@ -64,14 +65,14 @@ export const NavbarComponent = () => {
                     )}
                     <div>
                         <Navbar.Toggle
-                            aria-controls='offcanvasNavbar-expand-lg'
+                            aria-controls='offcanvasNavbar-expand-xs'
                             onClick={toogleNavbarMenu}
                         />
                         <Navbar.Offcanvas
                             show={showMenu}
                             onHide={toogleNavbarMenu}
-                            id='offcanvasNavbar-expand-lg'
-                            aria-labelledby='offcanvasNavbar-expand-lg'
+                            id='offcanvasNavbar-expand-xs'
+                            aria-labelledby='offcanvasNavbar-expand-xs'
                             placement='end'
                         >
                             <Offcanvas.Header
@@ -79,7 +80,7 @@ export const NavbarComponent = () => {
                                 className='ms-auto'
                             />
                             <Offcanvas.Body>
-                                <Nav className="fs-5 d-flex">
+                                <Nav className={`fs-3 d-flex ${innerWidth < 576 && 'align-items-center'}`}>
                                     <Nav.Link
                                         to='/'
                                         as={NavLink}

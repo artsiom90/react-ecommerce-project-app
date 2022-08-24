@@ -1,5 +1,6 @@
 .card {
-    overflow: hidden
+    overflow: hidden;
+    width: 17rem
 }
 
 .img {

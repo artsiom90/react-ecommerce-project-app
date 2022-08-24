@@ -41,10 +41,7 @@ export const CardComponent = ({
 
     return (
         <>
-            <Card
-                className={`p-0 position-relative ${styles.card}`}
-                style={{ width: '17rem' }}
-            >
+            <Card className={`p-0 position-relative ${styles.card}`}>
                 <Badge
                     bg='danger'
                     className={`position-absolute end-0 mt-1 me-1 fs-6 ${styles.badge}`}

@@ -1,7 +1,12 @@
 .img {
+    object-fit: cover;
     width: 125px;
     height: 75px;
-    object-fit: cover;
+}
+
+.img-block {
+    width: 125px;
+    height: 75px;
 }
 
 .price {
@@ -16,4 +21,12 @@
 
 .btns {
     cursor: pointer;
+}
+
+@media (max-width: 576px) {
+
+    .img,
+    .img-block {
+        width: 100px;
+    }
 }

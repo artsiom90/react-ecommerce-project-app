@@ -61,7 +61,7 @@ export const CartComponent = () => {
                             })}
                         </Stack>}
                 </Offcanvas.Body>
-                <div className='d-flex justify-content-between align-items-center mb-3 mx-3'>
+                <div className='d-flex justify-content-between align-items-center my-3 mx-3'>
                     {totalPrice > 0 && (
                         <>
                             < span className={`fs-5 ${styles.price}`}>

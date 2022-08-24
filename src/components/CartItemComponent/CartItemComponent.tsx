@@ -38,11 +38,13 @@ export const CartItemComponent = ({ cartItemId }: CartItemComponentProps) => {
       className='d-flex justify-content-between'
     >
       <div className='d-flex align-items-center gap-2'>
-        <img
-          src={item?.img}
-          alt='img'
-          className={styles.img}
-        />
+        <div className={styles['img-block']}>
+          <img
+            src={item?.img}
+            alt='img'
+            className={styles.img}
+          />
+        </div>
         <div className='d-flex flex-column justify-content-between gap-1'>
           <div className='fs-5 lh-1'>{item?.title}</div>
           <div className='d-flex gap-4'>
