@@ -80,7 +80,7 @@ export const NavbarComponent = () => {
                                 className='ms-auto'
                             />
                             <Offcanvas.Body>
-                                <Nav className={`fs-3 d-flex ${innerWidth < 576 && 'align-items-center'}`}>
+                                <Nav className={`fs-4 d-flex ${innerWidth < 576 && 'align-items-center'}`}>
                                     <Nav.Link
                                         to='/'
                                         as={NavLink}
