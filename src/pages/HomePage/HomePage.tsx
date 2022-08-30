@@ -1,5 +1,6 @@
 import { ChangeEvent, useContext, useEffect, useState } from "react"
 import { Container } from "react-bootstrap"
+import { useNavigate } from "react-router-dom"
 import { ButtonComponent } from "../../components/ButtonComponent/ButtonComponent"
 import { CardComponent } from "../../components/CardComponent/CardComponent"
 import { CartComponent } from "../../components/CartComponent/CartComponent"
@@ -8,10 +9,13 @@ import { TitleComponent } from "../../components/TitleComponent/TitleComponent"
 import { AppContext } from "../../context/AppContextProvider"
 import { useInnerWidth } from "../../hooks/useInnerWidth"
 import styles from './HomePage.module.css'
+var qs = require('qs')
 
 export const HomePage = () => {
     const [sortedBy, setSortedBy] = useState<string>('id')
     const [menuCategory, setMenuCategory] = useState<number>(0)
+
+    const navigate = useNavigate()
 
     const {
         menuData,
@@ -29,8 +33,26 @@ export const HomePage = () => {
     const sortList = ['default', 'price', 'rating']
 
     useEffect(() => {
+        if (window.location.search) {
+            const params = qs.parse(window.location.search.substring(1))
+            console.log(params)
+            setSortedBy(params.sorted_by)
+            setMenuCategory(Number(params.menu_category))
+        }
+    }, [])
+
+    useEffect(() => {
         getMenuData(menuCategory, sortedBy, searchData)
     }, [menuCategory, searchData, sortedBy, getMenuData])
+
+    useEffect(() => {
+        const queryString = qs.stringify({
+            menu_category: menuCategory,
+            sorted_by: sortedBy,
+        })
+
+        navigate(`?${queryString}`)
+    }, [menuCategory, sortedBy, navigate])
 
     return (
         <Container fluid>
