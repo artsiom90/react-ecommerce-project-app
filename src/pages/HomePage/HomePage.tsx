@@ -1,9 +1,10 @@
-import { ChangeEvent, useContext, useEffect, useState } from "react"
+import { useContext, useEffect, useRef, useState } from "react"
 import { Container } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
 import { ButtonComponent } from "../../components/ButtonComponent/ButtonComponent"
 import { CardComponent } from "../../components/CardComponent/CardComponent"
 import { CartComponent } from "../../components/CartComponent/CartComponent"
+import { DropdownComponent } from "../../components/DropdownComponent/DropdownComponent"
 import { SpinnerComponent } from "../../components/SpinnerComponent/SpinnerComponent"
 import { TitleComponent } from "../../components/TitleComponent/TitleComponent"
 import { AppContext } from "../../context/AppContextProvider"
@@ -12,10 +13,13 @@ import styles from './HomePage.module.css'
 var qs = require('qs')
 
 export const HomePage = () => {
-    const [sortedBy, setSortedBy] = useState<string>('id')
+    const [sortedBy, setSortedBy] = useState<string>('default')
     const [menuCategory, setMenuCategory] = useState<number>(0)
+    const isMounted = useRef<boolean>(false)
 
     const navigate = useNavigate()
+
+    const innerWidth = useInnerWidth()
 
     const {
         menuData,
@@ -27,94 +31,50 @@ export const HomePage = () => {
         addItemToCart,
     } = useContext(AppContext)
 
-    const innerWidth = useInnerWidth()
-
-    const btnMenuList = ['First menu', 'Second menu', 'Third menu']
-    const sortList = ['default', 'price', 'rating']
+    useEffect(() => {
+        getMenuData(menuCategory, sortedBy, searchData)
+    }, [menuCategory, searchData, sortedBy, getMenuData])
 
     useEffect(() => {
         if (window.location.search) {
             const params = qs.parse(window.location.search.substring(1))
-            console.log(params)
             setSortedBy(params.sorted_by)
             setMenuCategory(Number(params.menu_category))
         }
     }, [])
 
     useEffect(() => {
-        getMenuData(menuCategory, sortedBy, searchData)
-    }, [menuCategory, searchData, sortedBy, getMenuData])
-
-    useEffect(() => {
-        const queryString = qs.stringify({
-            menu_category: menuCategory,
-            sorted_by: sortedBy,
-        })
-
-        navigate(`?${queryString}`)
+        if (isMounted.current) {
+            const queryString = qs.stringify({
+                menu_category: menuCategory,
+                sorted_by: sortedBy,
+            }, { addQueryPrefix: true })
+            navigate(queryString)
+        }
+        isMounted.current = true
     }, [menuCategory, sortedBy, navigate])
+
+    const btnMenuList = ['First menu', 'Second menu', 'Third menu']
 
     return (
         <Container fluid>
-            <div className={`d-flex position-absolute mt-3 ${innerWidth < 768 && 'flex-column'}`}>
-                <label
-                    htmlFor='sort'
-                    className='fs-6 text-muted text-center'
-                >
-                    Sort by:
-                </label>
-                <select
-                    name='sort'
-                    id='sort'
-                    className={styles.sort}
-                    onChange={(e: ChangeEvent<HTMLSelectElement>) => setSortedBy(e.target.value)}
-                >
-                    {sortList.map((item, index) => {
-                        return (
-                            <option
-                                value={item}
-                                key={index}
-                                className={styles.option}
-                            >
-                                {item}
-                            </option>
-                        )
-                    })}
-                </select>
+            <div className='position-absolute mt-3'>
+                {innerWidth >= 768 && <DropdownComponent
+                    sortedBy={sortedBy}
+                    setSortedBy={setSortedBy}
+                />}
             </div>
             <CartComponent />
             <TitleComponent
                 title={'Welcome To Simple House'}
                 description={'Enjoy Your Meal'}
             />
-            <div className='d-flex justify-content-center flex-wrap pt-2 gap-4 pb-4'>
+            <div className='d-flex justify-content-center flex-wrap pt-1 gap-4 pb-4'>
                 {innerWidth < 768 ?
-                    <div className='d-flex flex-column'>
-                        <label
-                            htmlFor='menu'
-                            className='fs-6 text-muted text-center'
-                        >
-                            Tap to choose
-                        </label>
-                        <select
-                            name='menu'
-                            id='menu'
-                            className={styles.select}
-                            onChange={(e: ChangeEvent<HTMLSelectElement>) => setMenuCategory(+e.target.value)}
-                        >
-                            {btnMenuList.map((item, index) => {
-                                return (
-                                    <option
-                                        value={index}
-                                        key={index}
-                                        className={styles.option}
-                                    >
-                                        {item}
-                                    </option>
-                                )
-                            })}
-                        </select>
-                    </div>
+                    <DropdownComponent
+                        sortedBy={sortedBy}
+                        setSortedBy={setSortedBy}
+                    />
                     : btnMenuList.map((item, index) => {
                         return (
                             <ButtonComponent
