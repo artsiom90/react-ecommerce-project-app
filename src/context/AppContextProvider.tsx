@@ -11,15 +11,17 @@ interface AppContextProviderProps {
 interface AppContextProviderType {
     menuData: DataType[]
     searchData: string
-    cartItemsId: number[]
+    cartItems: DataType[] | undefined
     quantity: number
     isLoading: boolean
     getMenuData: (category: number, sortedBy: string, searchValue: string) => Promise<void>
     setSearchData: (value: string) => void
-    addCardItem: (id: number) => void
+    addCardItem: (item: number) => void
     removeCardItem: (id: number) => void
     addItemToCart: (id: number) => void
     removeItemFromCart: (id: number) => void
+    increaseCartItemQuantity: (id: number) => void
+    decreaseCartItemQuantity: (id: number) => void
     clearCardItems: (id: number) => void
     clearCartItems: () => void
 }
@@ -29,7 +31,7 @@ export const AppContext = createContext({} as AppContextProviderType)
 export const AppContextProvider = ({ children }: AppContextProviderProps) => {
     const [state, dispatch] = useReducer(appReducer, initialState)
 
-    const { menuData, searchData, quantity, cartItemsId, isLoading } = state
+    const { menuData, searchData, quantity, cartItems, isLoading } = state
 
     const getMenuData = useCallback(async (category: number, sortedBy: string, searchValue: string) => {
         try {
@@ -62,6 +64,16 @@ export const AppContextProvider = ({ children }: AppContextProviderProps) => {
         dispatch(appReducerActions.setCartItemsQuantity())
     }
 
+    const increaseCartItemQuantity = (payload: number) => {
+        dispatch(appReducerActions.increaseCartItemQuantity(payload))
+        dispatch(appReducerActions.setCartItemsQuantity())
+    }
+
+    const decreaseCartItemQuantity = (payload: number) => {
+        dispatch(appReducerActions.decreaseCartItemQuantity(payload))
+        dispatch(appReducerActions.setCartItemsQuantity())
+    }
+
     const removeItemFromCart = (payload: number) => {
         dispatch(appReducerActions.removeItemFromCart(payload))
         dispatch(appReducerActions.setCartItemsQuantity())
@@ -81,7 +93,7 @@ export const AppContextProvider = ({ children }: AppContextProviderProps) => {
         <AppContext.Provider value={{
             menuData,
             searchData,
-            cartItemsId,
+            cartItems,
             quantity,
             isLoading,
             getMenuData,
@@ -89,6 +101,8 @@ export const AppContextProvider = ({ children }: AppContextProviderProps) => {
             addCardItem,
             removeCardItem,
             addItemToCart,
+            increaseCartItemQuantity,
+            decreaseCartItemQuantity,
             removeItemFromCart,
             clearCardItems,
             clearCartItems,

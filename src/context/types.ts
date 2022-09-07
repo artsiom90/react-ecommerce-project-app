@@ -14,7 +14,7 @@ export interface AppReducerStateType {
     quantity: number
     menuData: DataType[]
     searchData: string
-    cartItemsId: number[]
+    cartItems: DataType[] | undefined
     isLoading: boolean
 }
 
@@ -25,6 +25,8 @@ export enum AppActionEnum {
     REMOVE_ITEM_FROM_CARD = 'REMOVE_ITEM_FROM_CARD',
     SET_ITEMS_QUANTITY = 'SET_ITEMS_QUANTITY',
     ADD_ITEM_TO_CART = 'ADD_ITEM_TO_CART',
+    INCREASE_CART_ITEM_QUANTITY = 'INCREASE_CART_ITEM_QUANTITY',
+    DECREASE_CART_ITEM_QUANTITY = 'DECREASE_CART_ITEM_QUANTITY',
     REMOVE_ITEM_FROM_CART = 'REMOVE_ITEM_FROM_CART',
     CLEAR_CARD_ITEMS = 'CLEAR_CARD_ITEMS',
     CLEAR_CART_ITEMS = 'CLEAR_CART_ITEMS',
@@ -51,6 +53,16 @@ export interface RemoveCardItemsActionType {
     payload: number
 }
 
+export interface IncreaseCartItemQuantityActionType {
+    type: AppActionEnum.INCREASE_CART_ITEM_QUANTITY
+    payload: number
+}
+
+export interface DecreaseCartItemQuantityActionType {
+    type: AppActionEnum.DECREASE_CART_ITEM_QUANTITY
+    payload: number
+}
+
 export interface SetCartItemsQuantityActionType {
     type: AppActionEnum.SET_ITEMS_QUANTITY
 }
@@ -60,7 +72,7 @@ export interface AddItemToCartActionType {
     payload: number
 }
 
-export interface RemoveItemTFromCartActionType {
+export interface RemoveItemFromCartActionType {
     type: AppActionEnum.REMOVE_ITEM_FROM_CART
     payload: number
 }
@@ -86,7 +98,9 @@ export type AppActionType =
     | RemoveCardItemsActionType
     | SetCartItemsQuantityActionType
     | AddItemToCartActionType
-    | RemoveItemTFromCartActionType
+    | RemoveItemFromCartActionType
+    | IncreaseCartItemQuantityActionType
+    | DecreaseCartItemQuantityActionType
     | ClearCardItemsActionType
     | ClearCartItemsActionType
     | SetIsLoadingActionType

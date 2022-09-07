@@ -1,34 +1,44 @@
 import { useContext } from "react"
 import { Stack } from "react-bootstrap"
 import { AppContext } from "../../context/AppContextProvider"
+import { DataType } from "../../context/types"
 import styles from './CartItem.module.css'
 
 interface CartItemComponentProps {
-  cartItemId: number
+  cartItem: DataType
 }
 
-export const CartItemComponent = ({ cartItemId }: CartItemComponentProps) => {
+export const CartItemComponent = ({ cartItem }: CartItemComponentProps) => {
   const {
-    menuData,
     addCardItem,
-    removeCardItem,
     removeItemFromCart,
+    removeCardItem,
+    increaseCartItemQuantity,
+    decreaseCartItemQuantity,
     clearCardItems,
   } = useContext(AppContext)
 
-  const item = menuData.find(item => item.id === cartItemId)
-
-  const removeItem = () => {
-    removeItemFromCart(cartItemId)
-    clearCardItems(item?.id as number)
+  const removeCartItem = () => {
+    removeItemFromCart(cartItem.id)
+    clearCardItems(cartItem.id)
   }
 
-  if (item?.quantity === 0) {
-    removeItem()
+  if (cartItem.quantity === 0) {
+    removeItemFromCart(cartItem.id)
   }
 
   const countCartItemPrice = (price: number) => {
-    return price * (item?.quantity as number)
+    return price * (cartItem.quantity as number)
+  }
+
+  const increaseItemQuantity = () => {
+    addCardItem(cartItem.id)
+    increaseCartItemQuantity(cartItem.id)
+  }
+
+  const decreaseItemQuantity = () => {
+    removeCardItem(cartItem.id)
+    decreaseCartItemQuantity(cartItem.id)
   }
 
   return (
@@ -40,17 +50,17 @@ export const CartItemComponent = ({ cartItemId }: CartItemComponentProps) => {
       <div className='d-flex align-items-center gap-2'>
         <div className={styles['img-block']}>
           <img
-            src={item?.img}
+            src={cartItem.img}
             alt='img'
             className={styles.img}
           />
         </div>
         <div className='d-flex flex-column justify-content-between gap-1'>
-          <div className='fs-5 lh-1'>{item?.title}</div>
+          <div className='fs-5 lh-1'>{cartItem?.title}</div>
           <div className='d-flex gap-4'>
             <div className='d-flex gap-2 align-items-center'>
               <svg
-                onClick={() => addCardItem(item?.id as number)}
+                onClick={increaseItemQuantity}
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
                 height="16"
@@ -60,11 +70,11 @@ export const CartItemComponent = ({ cartItemId }: CartItemComponentProps) => {
                 <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
                 <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
               </svg>
-              {item?.quantity && item?.quantity > 0 ? (
+              {cartItem.quantity && cartItem?.quantity > 0 ? (
                 <>
-                  <span className='text-muted'>x{item?.quantity}</span>
+                  <span className='text-muted'>x{cartItem?.quantity}</span>
                   <svg
-                    onClick={() => removeCardItem(item?.id as number)}
+                    onClick={decreaseItemQuantity}
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
                     height="16"
@@ -77,13 +87,15 @@ export const CartItemComponent = ({ cartItemId }: CartItemComponentProps) => {
                 </>
               ) : null}
             </div>
-            <span className={styles.price}>{countCartItemPrice(item?.price as number)}$</span>
+            <span className={styles.price}>
+              {countCartItemPrice(cartItem.price)}$
+            </span>
           </div>
         </div>
       </div>
       <button
         className={styles['remove-btn']}
-        onClick={removeItem}
+        onClick={removeCartItem}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

@@ -12,10 +12,9 @@ export const CartComponent = () => {
         setShowMenu(prev => !prev)
     }
 
-    const { menuData, quantity, cartItemsId, clearCartItems } = useContext(AppContext)
+    const { quantity, cartItems, clearCartItems } = useContext(AppContext)
 
-    const totalPrice = menuData
-        .filter(item => cartItemsId.includes(item.id))
+    const totalPrice = cartItems && cartItems
         .reduce((acc, item) => acc + (item.price as number * item.quantity as number), 0)
 
     return (
@@ -50,19 +49,19 @@ export const CartComponent = () => {
                     <Offcanvas.Title className='fs-3'>Your menu</Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
-                    {!cartItemsId.length
+                    {!cartItems?.length
                         ? <span className='fs-4 text-muted'>Your cart is empty</span>
                         : <Stack gap={3}>
-                            {cartItemsId.map(item => {
+                            {cartItems.map(item => {
                                 return <CartItemComponent
-                                    key={item}
-                                    cartItemId={item}
+                                    key={item.id}
+                                    cartItem={item}
                                 />
                             })}
                         </Stack>}
                 </Offcanvas.Body>
                 <div className='d-flex justify-content-between align-items-center my-3 mx-3'>
-                    {totalPrice > 0 && (
+                    {totalPrice !== undefined && totalPrice > 0 && (
                         <>
                             < span className={`fs-5 ${styles.price}`}>
                                 Total price: {totalPrice}$

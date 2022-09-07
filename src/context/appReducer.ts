@@ -4,8 +4,8 @@ export const initialState = {
     category: 0,
     quantity: 0,
     menuData: [] as DataType[],
-    searchData: 'a',
-    cartItemsId: [] as number[],
+    searchData: '',
+    cartItems: [] as any,
     isLoading: false,
 }
 
@@ -16,7 +16,7 @@ export const appReducer = (state = initialState, action: any): AppReducerStateTy
         case AppActionEnum.SET_SEARCH_DATA:
             return { ...state, searchData: action.payload }
         case AppActionEnum.ADD_ITEM_TO_CARD:
-            const newAddedCartItems = state.menuData.map(item => {
+            const newAddedCardItems = state.menuData.map(item => {
                 if (item.id === action.payload && !item.quantity) {
                     return { ...item, quantity: 1 }
                 }
@@ -25,17 +25,17 @@ export const appReducer = (state = initialState, action: any): AppReducerStateTy
                 }
                 return item
             })
-            return { ...state, menuData: newAddedCartItems }
+            return { ...state, menuData: newAddedCardItems }
         case AppActionEnum.REMOVE_ITEM_FROM_CARD:
-            const newRemovedCartItems = state.menuData.map(item => {
+            const newRemovedCardItems = state.menuData.map(item => {
                 if (item.id === action.payload) {
                     return { ...item, quantity: item.quantity - 1 }
                 }
                 return item
             })
-            return { ...state, menuData: newRemovedCartItems }
+            return { ...state, menuData: newRemovedCardItems }
         case AppActionEnum.SET_ITEMS_QUANTITY:
-            const itemsQuantity = state.menuData.reduce((acc, item) => {
+            const itemsQuantity = state.cartItems.reduce((acc: number, item: DataType) => {
                 if (item.quantity) {
                     return acc + item.quantity
                 }
@@ -43,13 +43,52 @@ export const appReducer = (state = initialState, action: any): AppReducerStateTy
             }, 0)
             return { ...state, quantity: itemsQuantity }
         case AppActionEnum.ADD_ITEM_TO_CART:
-            if (!state.cartItemsId.includes(action.payload)) {
-                return { ...state, cartItemsId: [...state.cartItemsId, action.payload] }
+            const item = state.menuData.find(item => item.id === action.payload)
+            if (!state.cartItems.some((cartItem: DataType) => cartItem.id === item?.id)) {
+                return { ...state, cartItems: [...state.cartItems, item] }
+            } else {
+                const newCartItems = state.cartItems.map((cartItem: DataType) => {
+                    if (cartItem.id === item?.id) {
+                        const newCartItem = {
+                            ...cartItem,
+                            quantity: cartItem.quantity + 1,
+                        }
+                        return newCartItem
+                    }
+                    return cartItem
+                })
+                return { ...state, cartItems: newCartItems }
             }
-            return state
-        case AppActionEnum.REMOVE_ITEM_FROM_CART:
-            const newCartItems = state.cartItemsId.filter(item => item !== action.payload)
-            return { ...state, cartItemsId: newCartItems }
+        case AppActionEnum.INCREASE_CART_ITEM_QUANTITY: {
+            const newCartItems = state.cartItems.map((cartItem: DataType) => {
+                if (cartItem.id === action.payload) {
+                    const newCartItem = {
+                        ...cartItem,
+                        quantity: cartItem.quantity + 1,
+                    }
+                    return newCartItem
+                }
+                return cartItem
+            })
+            return { ...state, cartItems: newCartItems }
+        }
+        case AppActionEnum.DECREASE_CART_ITEM_QUANTITY: {
+            const newCartItems = state.cartItems.map((cartItem: DataType) => {
+                if (cartItem.id === action.payload) {
+                    const newCartItem = {
+                        ...cartItem,
+                        quantity: cartItem.quantity - 1,
+                    }
+                    return newCartItem
+                }
+                return cartItem
+            })
+            return { ...state, cartItems: newCartItems }
+        }
+        case AppActionEnum.REMOVE_ITEM_FROM_CART: {
+            const newCartItems = state.cartItems.filter((item: DataType) => item.id !== action.payload)
+            return { ...state, cartItems: newCartItems }
+        }
         case AppActionEnum.CLEAR_CARD_ITEMS: {
             const newCardItems = state.menuData.map(item => {
                 if (item.id === action.payload) {
@@ -66,7 +105,7 @@ export const appReducer = (state = initialState, action: any): AppReducerStateTy
                 }
                 return item
             })
-            return { ...state, menuData: newCardItems, cartItemsId: [] }
+            return { ...state, menuData: newCardItems, cartItems: [] }
         }
         case AppActionEnum.SET_IS_LOADING: {
             return { ...state, isLoading: action.payload }
