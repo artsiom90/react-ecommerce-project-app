@@ -1,10 +1,12 @@
-import { useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Badge, Card } from "react-bootstrap"
+import { AppContext } from "../../context/AppContextProvider"
 import { ButtonComponent } from "../ButtonComponent/ButtonComponent"
 import { ModalComponent } from "../ModalComponent/ModalComponent"
 import styles from './Card.module.css'
 
 interface CardComponentProps {
+    id: number
     title: string
     img: string
     price: number
@@ -13,11 +15,12 @@ interface CardComponentProps {
     rating: number
     quantity: number
     addCardItem: () => void
-    removeCardItem: () => void
     addItemToCart: () => void
+    decreaseCartItemQuantity: () => void
 }
 
 export const CardComponent = ({
+    id,
     img,
     title,
     price,
@@ -25,10 +28,15 @@ export const CardComponent = ({
     rating,
     quantity,
     addCardItem,
-    removeCardItem,
     addItemToCart,
+    decreaseCartItemQuantity,
 }: CardComponentProps) => {
     const [openModal, setOpenModal] = useState<boolean>(false)
+    const { setCardItemQuantity } = useContext(AppContext)
+
+    useEffect(() => {
+        setCardItemQuantity(id)
+    }, [id, setCardItemQuantity])
 
     const toogleModal = () => {
         setOpenModal(prev => !prev)
@@ -68,7 +76,7 @@ export const CardComponent = ({
                             {quantity > 0 && <ButtonComponent
                                 title={'Remove'}
                                 classes={[styles['remove-btn']]}
-                                btnClick={removeCardItem}
+                                btnClick={decreaseCartItemQuantity}
                             />}
                         </div>
                         <span className={`fs-5 ${styles.price}`}>{price}$</span>

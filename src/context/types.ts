@@ -21,8 +21,8 @@ export interface AppReducerStateType {
 export enum AppActionEnum {
     SET_MENU_DATA = 'SET_MENU_DATA',
     SET_SEARCH_DATA = 'SET_SEARCH_DATA',
+    SET_CARD_ITEM_QUANTITY = 'SET_CARD_ITEM_QUANTITY',
     ADD_ITEM_TO_CARD = 'ADD_ITEM_TO_CARD',
-    REMOVE_ITEM_FROM_CARD = 'REMOVE_ITEM_FROM_CARD',
     SET_ITEMS_QUANTITY = 'SET_ITEMS_QUANTITY',
     ADD_ITEM_TO_CART = 'ADD_ITEM_TO_CART',
     INCREASE_CART_ITEM_QUANTITY = 'INCREASE_CART_ITEM_QUANTITY',
@@ -43,13 +43,13 @@ export interface SetSearchDataActionType {
     payload: string
 }
 
-export interface AddCardItemsActionType {
-    type: AppActionEnum.ADD_ITEM_TO_CARD
+export interface SetCardItemQuantityActionType {
+    type: AppActionEnum.SET_CARD_ITEM_QUANTITY
     payload: number
 }
 
-export interface RemoveCardItemsActionType {
-    type: AppActionEnum.REMOVE_ITEM_FROM_CARD
+export interface AddCardItemsActionType {
+    type: AppActionEnum.ADD_ITEM_TO_CARD
     payload: number
 }
 
@@ -94,8 +94,8 @@ export interface SetIsLoadingActionType {
 export type AppActionType =
     SetMenuDataActionType
     | SetSearchDataActionType
+    | SetCardItemQuantityActionType
     | AddCardItemsActionType
-    | RemoveCardItemsActionType
     | SetCartItemsQuantityActionType
     | AddItemToCartActionType
     | RemoveItemFromCartActionType

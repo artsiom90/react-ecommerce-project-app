@@ -27,8 +27,8 @@ export const HomePage = () => {
         isLoading,
         getMenuData,
         addCardItem,
-        removeCardItem,
         addItemToCart,
+        decreaseCartItemQuantity,
     } = useContext(AppContext)
 
     useEffect(() => {
@@ -105,7 +105,7 @@ export const HomePage = () => {
                                 >
                                     <CardComponent
                                         addCardItem={() => addCardItem(item.id)}
-                                        removeCardItem={() => removeCardItem(item.id)}
+                                        decreaseCartItemQuantity={() => decreaseCartItemQuantity(item.id)}
                                         addItemToCart={() => addItemToCart(item.id)}
                                         {...item}
                                     />

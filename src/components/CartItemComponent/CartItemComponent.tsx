@@ -10,9 +10,7 @@ interface CartItemComponentProps {
 
 export const CartItemComponent = ({ cartItem }: CartItemComponentProps) => {
   const {
-    addCardItem,
     removeItemFromCart,
-    removeCardItem,
     increaseCartItemQuantity,
     decreaseCartItemQuantity,
     clearCardItems,
@@ -29,16 +27,6 @@ export const CartItemComponent = ({ cartItem }: CartItemComponentProps) => {
 
   const countCartItemPrice = (price: number) => {
     return price * (cartItem.quantity as number)
-  }
-
-  const increaseItemQuantity = () => {
-    addCardItem(cartItem.id)
-    increaseCartItemQuantity(cartItem.id)
-  }
-
-  const decreaseItemQuantity = () => {
-    removeCardItem(cartItem.id)
-    decreaseCartItemQuantity(cartItem.id)
   }
 
   return (
@@ -60,7 +48,7 @@ export const CartItemComponent = ({ cartItem }: CartItemComponentProps) => {
           <div className='d-flex gap-4'>
             <div className='d-flex gap-2 align-items-center'>
               <svg
-                onClick={increaseItemQuantity}
+                onClick={() => increaseCartItemQuantity(cartItem.id)}
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
                 height="16"
@@ -74,7 +62,7 @@ export const CartItemComponent = ({ cartItem }: CartItemComponentProps) => {
                 <>
                   <span className='text-muted'>x{cartItem?.quantity}</span>
                   <svg
-                    onClick={decreaseItemQuantity}
+                    onClick={() => decreaseCartItemQuantity(cartItem.id)}
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
                     height="16"

@@ -16,8 +16,8 @@ interface AppContextProviderType {
     isLoading: boolean
     getMenuData: (category: number, sortedBy: string, searchValue: string) => Promise<void>
     setSearchData: (value: string) => void
+    setCardItemQuantity: (id: number) => void
     addCardItem: (item: number) => void
-    removeCardItem: (id: number) => void
     addItemToCart: (id: number) => void
     removeItemFromCart: (id: number) => void
     increaseCartItemQuantity: (id: number) => void
@@ -49,13 +49,12 @@ export const AppContextProvider = ({ children }: AppContextProviderProps) => {
         dispatch(appReducerActions.setSearchData(value))
     }
 
-    const addCardItem = (payload: number) => {
-        dispatch(appReducerActions.addCardItems(payload))
-        dispatch(appReducerActions.setCartItemsQuantity())
+    const setCardItemQuantity = (payload: number) => {
+        dispatch(appReducerActions.setCardItemQuantity(payload))
     }
 
-    const removeCardItem = (payload: number) => {
-        dispatch(appReducerActions.removeCardItems(payload))
+    const addCardItem = (payload: number) => {
+        dispatch(appReducerActions.addCardItems(payload))
         dispatch(appReducerActions.setCartItemsQuantity())
     }
 
@@ -98,8 +97,8 @@ export const AppContextProvider = ({ children }: AppContextProviderProps) => {
             isLoading,
             getMenuData,
             setSearchData,
+            setCardItemQuantity,
             addCardItem,
-            removeCardItem,
             addItemToCart,
             increaseCartItemQuantity,
             decreaseCartItemQuantity,

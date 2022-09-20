@@ -3,8 +3,8 @@ import { DataType, AppActionEnum } from "./types"
 export const appReducerActions = {
     setMenuData: (payload: DataType[]) => ({ type: AppActionEnum.SET_MENU_DATA, payload }),
     setSearchData: (payload: string) => ({ type: AppActionEnum.SET_SEARCH_DATA, payload }),
+    setCardItemQuantity: (payload: number) => ({ type: AppActionEnum.SET_CARD_ITEM_QUANTITY, payload }),
     addCardItems: (payload: number) => ({ type: AppActionEnum.ADD_ITEM_TO_CARD, payload }),
-    removeCardItems: (payload: number) => ({ type: AppActionEnum.REMOVE_ITEM_FROM_CARD, payload }),
     setCartItemsQuantity: () => ({ type: AppActionEnum.SET_ITEMS_QUANTITY }),
     addItemToCart: (payload: number) => ({ type: AppActionEnum.ADD_ITEM_TO_CART, payload }),
     increaseCartItemQuantity: (payload: number) => ({ type: AppActionEnum.INCREASE_CART_ITEM_QUANTITY, payload }),
